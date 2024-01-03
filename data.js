@@ -514,9 +514,12 @@ let job12 = [
   },
 ];
 
-// Repeat the pattern for additional job variations
-
 let timeBlock1 = [job1, job2, job3];
 let timeBlock2 = [job4, job5, job6];
 let timeBlock3 = [job7, job8, job9];
 let timeBlock4 = [job10, job11, job12];
+
+export { timeBlock1 };
+export { timeBlock2 };
+export { timeBlock3 };
+export { timeBlock4 };
