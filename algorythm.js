@@ -1,33 +1,39 @@
-import timeBlock1 from "./data.js";
-console.log("timeblock1 ", timeBlock1);
-import timeBlock2 from "./data.js";
-console.log("timeblock2 ", timeBlock2);
-import timeBlock3 from "./data.js";
-console.log("timeblock3 ", timeBlock3);
-import timeBlock4 from "./data.js";
-console.log("timeblock4 ", timeBlock4);
-
-let results = [];
+import { timeBlock1, timeBlock2, timeBlock3, timeBlock4 } from "./data.js";
+// console.log("timeblock1 ", timeBlock1);
 
 let masterArray = [timeBlock1, timeBlock2, timeBlock3, timeBlock4];
 
-timeBlock1.forEach((time1) => {
-  timeBlock2.forEach((time2) => {
-    timeBlock3.forEach((time3) => {
-      timeBlock4.forEach((time4) => {
-        results.push(
-          time1.vendor,
-          time1.cost,
-          time2.vendor,
-          time2.cost,
-          time3.vendor,
-          time3.cost,
-          time4.vendor,
-          time4.cost,
-          { total: time1.cost + time2.cost + time3.cost + time4.cost }
-        );
-        console.log(time1.cost + time2.cost + time3.cost + time4.cost);
-      });
-    });
-  });
-});
+// An array to store each combination
+const allCombinations = [];
+
+// Nested loops to iterate through each array and its elements
+for (let i = 0; i < masterArray[0].length; i++) {
+  for (let j = 0; j < masterArray[1].length; j++) {
+    for (let k = 0; k < masterArray[2].length; k++) {
+      for (let l = 0; l < masterArray[3].length; l++) {
+        // Create an object to store the details of the current combination
+        const combination = {
+          vendor1: masterArray[0][i].vendor,
+          cost: masterArray[0][i].cost,
+          vendor2: masterArray[1][j].vendor,
+          cost: masterArray[1][j].cost,
+          vendor3: masterArray[2][k].vendor,
+          cost: masterArray[2][k].cost,
+          vendor4: masterArray[3][l].vendor,
+          cost: masterArray[3][l].cost,
+          totalCost:
+            Number(masterArray[0][i].cost) +
+            Number(masterArray[1][j].cost) +
+            Number(masterArray[2][k].cost) +
+            Number(masterArray[3][l].cost),
+        };
+
+        // Push the combination object to the allCombinations array
+        allCombinations.push(combination);
+      }
+    }
+  }
+}
+
+// Now, allCombinations contains every possible combination of bids
+console.log(allCombinations);
