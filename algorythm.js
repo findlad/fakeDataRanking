@@ -78,4 +78,8 @@ for (let i = 0; i < time1Combinations.length; i++) {
     }
   }
 }
-console.log(allCombinations);
+// console.log(allCombinations);
+
+allCombinations.sort((a, b) => a.totalCost - b.totalCost);
+let topTen = allCombinations.slice(0, 9);
+console.log(topTen);
