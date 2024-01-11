@@ -1,14 +1,12 @@
-import { timeBlock1, timeBlock2, timeBlock3, timeBlock4 } from "./data.js";
-// console.log("timeblock1 ", timeBlock1);
+import { phase1, phase2, phase3, phase4 } from "./data.js";
+// console.log("phase1 ", phase1);
 
-let masterArray = [timeBlock1, timeBlock2, timeBlock3, timeBlock4];
-// console.log(masterArray[0][0][0]);
 // An array to store each combination
 let allCombinations = [];
-let time1Combinations = [];
-let time2Combinations = [];
-let time3Combinations = [];
-let time4Combinations = [];
+let phase1Combinations = [];
+let phase2Combinations = [];
+let phase3Combinations = [];
+let phase4Combinations = [];
 let count = 0;
 // Nested loops to iterate through each array and its elements
 function iterate(phase, phaseArray) {
@@ -46,29 +44,29 @@ function iterate(phase, phaseArray) {
   }
 }
 
-iterate(timeBlock1, time1Combinations);
-iterate(timeBlock2, time2Combinations);
-iterate(timeBlock3, time3Combinations);
-iterate(timeBlock4, time4Combinations);
+iterate(phase1, phase1Combinations);
+iterate(phase2, phase2Combinations);
+iterate(phase3, phase3Combinations);
+iterate(phase4, phase4Combinations);
 
 let countAll = 0;
 
-for (let i = 0; i < time1Combinations.length; i++) {
-  for (let j = 0; j < time2Combinations.length; j++) {
-    for (let k = 0; k < time3Combinations.length; k++) {
-      for (let l = 0; l < time3Combinations.length; l++) {
+for (let i = 0; i < phase1Combinations.length; i++) {
+  for (let j = 0; j < phase2Combinations.length; j++) {
+    for (let k = 0; k < phase3Combinations.length; k++) {
+      for (let l = 0; l < phase3Combinations.length; l++) {
         let combination = {
           iteration: countAll,
           totalCost:
-            Number(time1Combinations[i].totalCost) +
-            Number(time2Combinations[j].totalCost) +
-            Number(time3Combinations[k].totalCost) +
-            Number(time4Combinations[l].totalCost),
+            Number(phase1Combinations[i].totalCost) +
+            Number(phase2Combinations[j].totalCost) +
+            Number(phase3Combinations[k].totalCost) +
+            Number(phase4Combinations[l].totalCost),
           jobs: {
-            phase1: time1Combinations[i].jobs,
-            phase2: time2Combinations[j].jobs,
-            phase3: time3Combinations[k].jobs,
-            phase4: time4Combinations[l].jobs,
+            phase1: phase1Combinations[i].jobs,
+            phase2: phase2Combinations[j].jobs,
+            phase3: phase3Combinations[k].jobs,
+            phase4: phase4Combinations[l].jobs,
           },
         };
 
