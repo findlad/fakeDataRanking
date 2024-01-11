@@ -1,49 +1,51 @@
 let workPackage1 = [
   {
+    workPackage: 1,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "jan 5",
     endDate: "jan 20",
-    length: 12,
+    length: 16,
     cost: 110000,
     quote: true,
     bidID: 54321,
   },
   {
+    workPackage: 1,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "jan 8",
     endDate: "jan 20",
-    length: 10,
+    length: 13,
     cost: 80000,
     quote: true,
     bidID: 54322,
   },
   {
+    workPackage: 1,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "jan 2",
     endDate: "jan 14",
-    length: 14,
+    length: 13,
     cost: 130000,
     quote: false,
     bidID: 54323,
   },
   {
+    workPackage: 1,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "jan 6",
     endDate: "jan 14",
-    length: 8,
+    length: 9,
     cost: 90000,
     quote: true,
     bidID: 54324,
   },
-];
-
-let workPackage2 = [
   {
-    vendor: "amazon",
+    workPackage: 1,
+    vendor: "ericcson",
     uniform2: "abc",
     startDate: "jan 3",
     endDate: "jan 18",
@@ -52,7 +54,11 @@ let workPackage2 = [
     quote: false,
     bidID: 54325,
   },
+];
+
+let workPackage2 = [
   {
+    workPackage: 2,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "jan 7",
@@ -63,6 +69,7 @@ let workPackage2 = [
     bidID: 54326,
   },
   {
+    workPackage: 2,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "jan 2",
@@ -73,6 +80,7 @@ let workPackage2 = [
     bidID: 54327,
   },
   {
+    workPackage: 2,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "jan 5",
@@ -86,16 +94,18 @@ let workPackage2 = [
 
 let workPackage3 = [
   {
+    workPackage: 3,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "jan 4",
     endDate: "jan 19",
-    length: 14,
+    length: 16,
     cost: 120000,
     quote: true,
     bidID: 54329,
   },
   {
+    workPackage: 3,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "jan 9",
@@ -106,6 +116,7 @@ let workPackage3 = [
     bidID: 54330,
   },
   {
+    workPackage: 3,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "jan 1",
@@ -113,9 +124,10 @@ let workPackage3 = [
     length: 13,
     cost: 120000,
     quote: true,
-    bidID: 12345,
+    bidID: 54331,
   },
   {
+    workPackage: 3,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "jan 4",
@@ -123,32 +135,35 @@ let workPackage3 = [
     length: 9,
     cost: 120000,
     quote: false,
-    bidID: 12345,
+    bidID: 54332,
   },
 ];
 
 let workPackage4 = [
   {
+    workPackage: 4,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "feb 6",
     endDate: "feb 15",
-    length: 15,
+    length: 10,
     cost: 110000,
     quote: true,
-    bidID: 54331,
+    bidID: 54333,
   },
   {
+    workPackage: 4,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "feb 2",
     endDate: "feb 14",
-    length: 12,
+    length: 13,
     cost: 90000,
     quote: false,
-    bidID: 54332,
+    bidID: 54334,
   },
   {
+    workPackage: 4,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "feb 5",
@@ -156,9 +171,10 @@ let workPackage4 = [
     length: 14,
     cost: 100000,
     quote: true,
-    bidID: 54333,
+    bidID: 54335,
   },
   {
+    workPackage: 4,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "feb 3",
@@ -166,22 +182,24 @@ let workPackage4 = [
     length: 11,
     cost: 95000,
     quote: true,
-    bidID: 54334,
+    bidID: 54336,
   },
 ];
 
 let workPackage5 = [
   {
+    workPackage: 5,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "feb 8",
     endDate: "feb 17",
-    length: 13,
+    length: 10,
     cost: 80000,
     quote: false,
-    bidID: 54335,
+    bidID: 54337,
   },
   {
+    workPackage: 5,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "feb 2",
@@ -189,19 +207,21 @@ let workPackage5 = [
     length: 10,
     cost: 130000,
     quote: true,
-    bidID: 54336,
+    bidID: 54338,
   },
   {
+    workPackage: 5,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "feb 7",
     endDate: "feb 16",
-    length: 12,
+    length: 10,
     cost: 110000,
     quote: false,
-    bidID: 54337,
+    bidID: 54339,
   },
   {
+    workPackage: 5,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "feb 4",
@@ -209,22 +229,24 @@ let workPackage5 = [
     length: 16,
     cost: 95000,
     quote: true,
-    bidID: 54338,
+    bidID: 54340,
   },
 ];
 
 let workPackage6 = [
   {
+    workPackage: 6,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "feb 3",
     endDate: "feb 15",
-    length: 11,
+    length: 13,
     cost: 105000,
     quote: true,
-    bidID: 54339,
+    bidID: 54341,
   },
   {
+    workPackage: 6,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "feb 6",
@@ -232,19 +254,21 @@ let workPackage6 = [
     length: 14,
     cost: 88000,
     quote: false,
-    bidID: 54340,
+    bidID: 54342,
   },
   {
+    workPackage: 6,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "feb 1",
     endDate: "feb 14",
-    length: 9,
+    length: 13,
     cost: 120000,
     quote: true,
-    bidID: 54341,
+    bidID: 54343,
   },
   {
+    workPackage: 6,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "feb 5",
@@ -252,12 +276,13 @@ let workPackage6 = [
     length: 13,
     cost: 100000,
     quote: false,
-    bidID: 54342,
+    bidID: 54344,
   },
 ];
 
 let workPackage7 = [
   {
+    workPackage: 7,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "mar 4",
@@ -265,9 +290,10 @@ let workPackage7 = [
     length: 12,
     cost: 95000,
     quote: true,
-    bidID: 54343,
+    bidID: 54345,
   },
   {
+    workPackage: 7,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "mar 7",
@@ -275,9 +301,10 @@ let workPackage7 = [
     length: 16,
     cost: 110000,
     quote: false,
-    bidID: 54344,
+    bidID: 54346,
   },
   {
+    workPackage: 7,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "mar 2",
@@ -285,9 +312,10 @@ let workPackage7 = [
     length: 11,
     cost: 80000,
     quote: true,
-    bidID: 54345,
+    bidID: 54347,
   },
   {
+    workPackage: 7,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "mar 6",
@@ -295,12 +323,13 @@ let workPackage7 = [
     length: 14,
     cost: 120000,
     quote: false,
-    bidID: 54346,
+    bidID: 54348,
   },
 ];
 
 let workPackage8 = [
   {
+    workPackage: 8,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "mar 5",
@@ -308,9 +337,10 @@ let workPackage8 = [
     length: 13,
     cost: 100000,
     quote: true,
-    bidID: 54347,
+    bidID: 54349,
   },
   {
+    workPackage: 8,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "mar 9",
@@ -318,19 +348,21 @@ let workPackage8 = [
     length: 10,
     cost: 85000,
     quote: false,
-    bidID: 54348,
+    bidID: 54350,
   },
   {
+    workPackage: 8,
     vendor: "coldgarden",
     uniform2: "abc",
-    startDate: "mar",
+    startDate: "mar 1",
     endDate: "mar 14",
     length: 12,
     cost: 110000,
     quote: true,
-    bidID: 54349,
+    bidID: 54351,
   },
   {
+    workPackage: 8,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "mar 4",
@@ -338,12 +370,13 @@ let workPackage8 = [
     length: 15,
     cost: 95000,
     quote: false,
-    bidID: 54350,
+    bidID: 54352,
   },
 ];
 
 let workPackage9 = [
   {
+    workPackage: 9,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "mar 6",
@@ -351,9 +384,10 @@ let workPackage9 = [
     length: 14,
     cost: 130000,
     quote: true,
-    bidID: 54351,
+    bidID: 54353,
   },
   {
+    workPackage: 9,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "mar 2",
@@ -361,9 +395,10 @@ let workPackage9 = [
     length: 11,
     cost: 90000,
     quote: false,
-    bidID: 54352,
+    bidID: 54354,
   },
   {
+    workPackage: 9,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "mar 5",
@@ -371,9 +406,10 @@ let workPackage9 = [
     length: 13,
     cost: 100000,
     quote: true,
-    bidID: 54353,
+    bidID: 54355,
   },
   {
+    workPackage: 9,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "mar 3",
@@ -381,12 +417,13 @@ let workPackage9 = [
     length: 16,
     cost: 95000,
     quote: true,
-    bidID: 54354,
+    bidID: 54356,
   },
 ];
 
 let workPackage10 = [
   {
+    workPackage: 10,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "apr 8",
@@ -394,9 +431,10 @@ let workPackage10 = [
     length: 12,
     cost: 80000,
     quote: false,
-    bidID: 54355,
+    bidID: 54357,
   },
   {
+    workPackage: 10,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "apr 2",
@@ -404,9 +442,10 @@ let workPackage10 = [
     length: 10,
     cost: 130000,
     quote: true,
-    bidID: 54356,
+    bidID: 54358,
   },
   {
+    workPackage: 10,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "apr 7",
@@ -414,9 +453,10 @@ let workPackage10 = [
     length: 14,
     cost: 110000,
     quote: false,
-    bidID: 54357,
+    bidID: 54359,
   },
   {
+    workPackage: 10,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "apr 4",
@@ -424,12 +464,13 @@ let workPackage10 = [
     length: 15,
     cost: 95000,
     quote: true,
-    bidID: 54358,
+    bidID: 54360,
   },
 ];
 
 let workPackage11 = [
   {
+    workPackage: 11,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "apr 3",
@@ -440,6 +481,7 @@ let workPackage11 = [
     bidID: 54359,
   },
   {
+    workPackage: 11,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "apr 6",
@@ -450,6 +492,7 @@ let workPackage11 = [
     bidID: 54360,
   },
   {
+    workPackage: 11,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "apr 1",
@@ -460,6 +503,7 @@ let workPackage11 = [
     bidID: 54361,
   },
   {
+    workPackage: 11,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "apr 5",
@@ -473,6 +517,7 @@ let workPackage11 = [
 
 let workPackage12 = [
   {
+    workPackage: 12,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "apr 4",
@@ -483,6 +528,7 @@ let workPackage12 = [
     bidID: 54363,
   },
   {
+    workPackage: 12,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "apr 7",
@@ -493,6 +539,7 @@ let workPackage12 = [
     bidID: 54364,
   },
   {
+    workPackage: 12,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "apr 2",
@@ -503,6 +550,7 @@ let workPackage12 = [
     bidID: 54365,
   },
   {
+    workPackage: 12,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "apr 6",
