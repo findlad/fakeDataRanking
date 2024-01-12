@@ -8,7 +8,7 @@ let workPackage1 = [
     length: 16,
     cost: 110000,
     quote: true,
-    bidID: 54321,
+    ID: 54321,
   },
   {
     workPackage: 1,
@@ -19,7 +19,7 @@ let workPackage1 = [
     length: 13,
     cost: 80000,
     quote: true,
-    bidID: 54322,
+    ID: 54322,
   },
   {
     workPackage: 1,
@@ -30,7 +30,7 @@ let workPackage1 = [
     length: 13,
     cost: 130000,
     quote: false,
-    bidID: 54323,
+    ID: 54323,
   },
   {
     workPackage: 1,
@@ -41,7 +41,7 @@ let workPackage1 = [
     length: 9,
     cost: 90000,
     quote: true,
-    bidID: 54324,
+    ID: 54324,
   },
   {
     workPackage: 1,
@@ -52,7 +52,7 @@ let workPackage1 = [
     length: 16,
     cost: 95000,
     quote: false,
-    bidID: 54325,
+    ID: 54325,
   },
 ];
 
@@ -66,7 +66,7 @@ let workPackage2 = [
     length: 13,
     cost: 75000,
     quote: true,
-    bidID: 54326,
+    ID: 54326,
   },
   {
     workPackage: 2,
@@ -77,7 +77,7 @@ let workPackage2 = [
     length: 11,
     cost: 110000,
     quote: true,
-    bidID: 54327,
+    ID: 54327,
   },
   {
     workPackage: 2,
@@ -88,7 +88,7 @@ let workPackage2 = [
     length: 10,
     cost: 100000,
     quote: false,
-    bidID: 54328,
+    ID: 54328,
   },
 ];
 
@@ -102,7 +102,7 @@ let workPackage3 = [
     length: 16,
     cost: 120000,
     quote: true,
-    bidID: 54329,
+    ID: 54329,
   },
   {
     workPackage: 3,
@@ -113,7 +113,7 @@ let workPackage3 = [
     length: 12,
     cost: 85000,
     quote: false,
-    bidID: 54330,
+    ID: 54330,
   },
   {
     workPackage: 3,
@@ -124,7 +124,7 @@ let workPackage3 = [
     length: 13,
     cost: 120000,
     quote: true,
-    bidID: 54331,
+    ID: 54331,
   },
   {
     workPackage: 3,
@@ -135,7 +135,7 @@ let workPackage3 = [
     length: 9,
     cost: 120000,
     quote: false,
-    bidID: 54332,
+    ID: 54332,
   },
 ];
 
@@ -149,7 +149,7 @@ let workPackage4 = [
     length: 10,
     cost: 110000,
     quote: true,
-    bidID: 54333,
+    ID: 54333,
   },
   {
     workPackage: 4,
@@ -160,7 +160,7 @@ let workPackage4 = [
     length: 13,
     cost: 90000,
     quote: false,
-    bidID: 54334,
+    ID: 54334,
   },
   {
     workPackage: 4,
@@ -171,7 +171,7 @@ let workPackage4 = [
     length: 14,
     cost: 100000,
     quote: true,
-    bidID: 54335,
+    ID: 54335,
   },
   {
     workPackage: 4,
@@ -182,7 +182,7 @@ let workPackage4 = [
     length: 11,
     cost: 95000,
     quote: true,
-    bidID: 54336,
+    ID: 54336,
   },
 ];
 
@@ -196,7 +196,7 @@ let workPackage5 = [
     length: 10,
     cost: 80000,
     quote: false,
-    bidID: 54337,
+    ID: 54337,
   },
   {
     workPackage: 5,
@@ -207,7 +207,7 @@ let workPackage5 = [
     length: 10,
     cost: 130000,
     quote: true,
-    bidID: 54338,
+    ID: 54338,
   },
   {
     workPackage: 5,
@@ -218,7 +218,7 @@ let workPackage5 = [
     length: 10,
     cost: 110000,
     quote: false,
-    bidID: 54339,
+    ID: 54339,
   },
   {
     workPackage: 5,
@@ -229,7 +229,7 @@ let workPackage5 = [
     length: 16,
     cost: 95000,
     quote: true,
-    bidID: 54340,
+    ID: 54340,
   },
 ];
 
@@ -243,7 +243,7 @@ let workPackage6 = [
     length: 13,
     cost: 105000,
     quote: true,
-    bidID: 54341,
+    ID: 54341,
   },
   {
     workPackage: 6,
@@ -254,7 +254,7 @@ let workPackage6 = [
     length: 14,
     cost: 88000,
     quote: false,
-    bidID: 54342,
+    ID: 54342,
   },
   {
     workPackage: 6,
@@ -265,7 +265,7 @@ let workPackage6 = [
     length: 13,
     cost: 120000,
     quote: true,
-    bidID: 54343,
+    ID: 54343,
   },
   {
     workPackage: 6,
@@ -276,7 +276,7 @@ let workPackage6 = [
     length: 13,
     cost: 100000,
     quote: false,
-    bidID: 54344,
+    ID: 54344,
   },
 ];
 
@@ -290,7 +290,7 @@ let workPackage7 = [
     length: 12,
     cost: 95000,
     quote: true,
-    bidID: 54345,
+    ID: 54345,
   },
   {
     workPackage: 7,
@@ -301,7 +301,7 @@ let workPackage7 = [
     length: 16,
     cost: 110000,
     quote: false,
-    bidID: 54346,
+    ID: 54346,
   },
   {
     workPackage: 7,
@@ -312,7 +312,7 @@ let workPackage7 = [
     length: 11,
     cost: 80000,
     quote: true,
-    bidID: 54347,
+    ID: 54347,
   },
   {
     workPackage: 7,
@@ -323,7 +323,7 @@ let workPackage7 = [
     length: 14,
     cost: 120000,
     quote: false,
-    bidID: 54348,
+    ID: 54348,
   },
 ];
 
@@ -337,7 +337,7 @@ let workPackage8 = [
     length: 13,
     cost: 100000,
     quote: true,
-    bidID: 54349,
+    ID: 54349,
   },
   {
     workPackage: 8,
@@ -348,7 +348,7 @@ let workPackage8 = [
     length: 10,
     cost: 85000,
     quote: false,
-    bidID: 54350,
+    ID: 54350,
   },
   {
     workPackage: 8,
@@ -359,7 +359,7 @@ let workPackage8 = [
     length: 12,
     cost: 110000,
     quote: true,
-    bidID: 54351,
+    ID: 54351,
   },
   {
     workPackage: 8,
@@ -370,7 +370,7 @@ let workPackage8 = [
     length: 15,
     cost: 95000,
     quote: false,
-    bidID: 54352,
+    ID: 54352,
   },
 ];
 
@@ -384,7 +384,7 @@ let workPackage9 = [
     length: 14,
     cost: 130000,
     quote: true,
-    bidID: 54353,
+    ID: 54353,
   },
   {
     workPackage: 9,
@@ -395,7 +395,7 @@ let workPackage9 = [
     length: 11,
     cost: 90000,
     quote: false,
-    bidID: 54354,
+    ID: 54354,
   },
   {
     workPackage: 9,
@@ -406,7 +406,7 @@ let workPackage9 = [
     length: 13,
     cost: 100000,
     quote: true,
-    bidID: 54355,
+    ID: 54355,
   },
   {
     workPackage: 9,
@@ -417,7 +417,7 @@ let workPackage9 = [
     length: 16,
     cost: 95000,
     quote: true,
-    bidID: 54356,
+    ID: 54356,
   },
 ];
 
@@ -431,7 +431,7 @@ let workPackage10 = [
     length: 12,
     cost: 80000,
     quote: false,
-    bidID: 54357,
+    ID: 54357,
   },
   {
     workPackage: 10,
@@ -442,7 +442,7 @@ let workPackage10 = [
     length: 10,
     cost: 130000,
     quote: true,
-    bidID: 54358,
+    ID: 54358,
   },
   {
     workPackage: 10,
@@ -453,7 +453,7 @@ let workPackage10 = [
     length: 14,
     cost: 110000,
     quote: false,
-    bidID: 54359,
+    ID: 54359,
   },
   {
     workPackage: 10,
@@ -464,7 +464,7 @@ let workPackage10 = [
     length: 15,
     cost: 95000,
     quote: true,
-    bidID: 54360,
+    ID: 54360,
   },
 ];
 
@@ -478,7 +478,7 @@ let workPackage11 = [
     length: 13,
     cost: 105000,
     quote: true,
-    bidID: 54359,
+    ID: 54359,
   },
   {
     workPackage: 11,
@@ -489,7 +489,7 @@ let workPackage11 = [
     length: 12,
     cost: 88000,
     quote: false,
-    bidID: 54360,
+    ID: 54360,
   },
   {
     workPackage: 11,
@@ -500,7 +500,7 @@ let workPackage11 = [
     length: 9,
     cost: 120000,
     quote: true,
-    bidID: 54361,
+    ID: 54361,
   },
   {
     workPackage: 11,
@@ -511,7 +511,7 @@ let workPackage11 = [
     length: 13,
     cost: 100000,
     quote: false,
-    bidID: 54362,
+    ID: 54362,
   },
 ];
 
@@ -525,7 +525,7 @@ let workPackage12 = [
     length: 12,
     cost: 95000,
     quote: true,
-    bidID: 54363,
+    ID: 54363,
   },
   {
     workPackage: 12,
@@ -536,7 +536,7 @@ let workPackage12 = [
     length: 16,
     cost: 110000,
     quote: false,
-    bidID: 54364,
+    ID: 54364,
   },
   {
     workPackage: 12,
@@ -547,7 +547,7 @@ let workPackage12 = [
     length: 11,
     cost: 80000,
     quote: true,
-    bidID: 54365,
+    ID: 54365,
   },
   {
     workPackage: 12,
@@ -558,7 +558,7 @@ let workPackage12 = [
     length: 14,
     cost: 120000,
     quote: false,
-    bidID: 54366,
+    ID: 54366,
   },
 ];
 
