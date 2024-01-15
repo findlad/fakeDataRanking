@@ -87,8 +87,8 @@ for (let i = 0; i < 10; i++) {
   allCombinations[i].unshift({
     iterationID: count,
     constructionCost: runTotal,
-    interest: interestRunningTotal,
-    totalCost: runTotal + interestRunningTotal,
+    interest: interestRunningTotal.toFixed(2),
+    totalCost: Number(runTotal) + Number(interestRunningTotal.toFixed(2)),
   });
 
   count++;
