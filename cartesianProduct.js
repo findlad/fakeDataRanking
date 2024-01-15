@@ -11,6 +11,7 @@ import { phase1, phase2, phase3, phase4 } from "./data.js";
 
 const cartesian = (...a) =>
   a.reduce((a, b) => a.flatMap((d) => b.map((e) => [d, e].flat())));
+
 let interestRate = 0.15;
 let freeMoney = 500000;
 let startDay = "jan 01";
@@ -29,24 +30,51 @@ allCombinations.forEach((iteration) => {
     .filter((iter) => iter.phase === 1)
     .sort((a, b) => new Date(a.endDate) - new Date(b.endDate));
 
+  //set variables for each iteration
   let runTotal = 0;
+  let daysSinceLastBid = 0;
+  let interestSinceLastBid = 0;
+  let interestRunningTotal = 0;
+  //lastProcessDate initially set to the end date of first bid
+  let lastProcessDate = iteration[0].endDate;
+  let inDebt = false;
+  let debtStart = 0;
+
   iteration.forEach((bid) => {
     //calculate construction cost as we go
     runTotal = bid.cost + runTotal;
     bid.runningTotal = runTotal;
-    //cost of money, we need ot know interest rate, amount borrowed, and time its been borrowed
+
+    //cost of money, we need to know interest rate, amount borrowed, and time its been borrowed
+    //figure out time since last bid was processed
+    daysSinceLastBid =
+      (new Date(lastProcessDate) - new Date(bid.endDate)) / 86400000; //miliseconds to days
+
+    //set lastprocessdate for the analysis of the next bid. This must update as we go along like running total
+    lastProcessDate = bid.endDate;
+
     //figure out how far we are into the project
     bid.daysIntoProject = new Date(bid.endDate) - new Date(startDay);
 
-    let interest = 0;
-    //test to see if were using the loan
-    if (bid.runningTotal - freeMoney > 0) {
+    //test to see if we need to spend the loan
+    if ((inDebt = true)) {
       //using borrowed money
-      bid.lastProcessDate = bid.endDate;
-      //using free money
-    } else {
+      interestSinceLastBid =
+        ((debtLevel * interestRate) / 365.25) * daysSinceLastBid;
+      interestRunningTotal = interestRunningTotal + interestSinceLastBid;
+      bid.costOfMoney = interestRunningTotal;
+      debtLevel = bid.runningTotal - freeMoney;
+      bid.borrowAmount = debtLevel;
+    } else if (bid.runningTotal - freeMoney > 0) {
+      //set up to calculate interest next time
+      inDebt = true;
+      debtStart = bid.endDate;
+      debtLevel = bid.runningTotal - freeMoney;
       bid.costOfMoney = 0;
-      bid.lastProcessDate = bid.endDate;
+      bid.borrowAmount = debtLevel;
+    } else {
+      //using free money
+      bid.costOfMoney = 0;
       bid.borrowAmount = 0;
     }
   });
