@@ -61,7 +61,7 @@ for (let i = 0; i < 10; i++) {
 
     //test to see if we need to spend the loan
     if (inDebt === true) {
-      //using borrowed money
+      //using borrowed money: simple interest! Do we need compound?
       interestSinceLastBid =
         ((debtLevel * interestRate) / 365.25) * daysSinceLastBid;
       interestRunningTotal = interestRunningTotal + interestSinceLastBid;
