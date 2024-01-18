@@ -1,5 +1,6 @@
 import { phase1, phase2, phase3, phase4 } from "./data.js";
 import { addDaysToDate, subtractDaysFromDate } from "./timeAddFunctions.js";
+import fs from "fs";
 
 // cartesian product, dont ask, i dont know, but it works
 const cartesian = (...a) =>
@@ -12,15 +13,23 @@ let phase2Comb = cartesian(...phase2);
 let phase3Comb = cartesian(...phase3);
 let phase4Comb = cartesian(...phase4);
 let allCombinations = cartesian(phase1Comb, phase2Comb, phase3Comb, phase4Comb);
+
+//document all phases in dataset
 let phaseNumberArray = [];
 allCombinations[0].forEach((bid) => {
   if (phaseNumberArray.indexOf(bid.phase) === -1)
     phaseNumberArray.push(bid.phase);
 });
-console.log(phaseNumberArray);
+// console.log(phaseNumberArray);
+
+//set global variables
+let interestRate = 0.15;
+let freeMoney = 50000;
+let startDay = "jan 01 2024";
+let count = 0;
 
 //figure out and append the phase length for each iteration plus move dates accordingly
-function moveDatesForPhase(allComb, startDay, phaseNumberArray) {
+function moveDatesForPhase(allComb) {
   allComb.forEach((iteration) => {
     let phaseStart = new Date(startDay);
     phaseNumberArray.forEach((phase) => {
@@ -43,11 +52,7 @@ function moveDatesForPhase(allComb, startDay, phaseNumberArray) {
   });
 }
 
-//set global variables
-let interestRate = 0.15;
-let freeMoney = 50000;
-let startDay = "jan 01 2024";
-let count = 0;
+moveDatesForPhase(allCombinations);
 
 //REAL THINGfor every iteration, uncoment this and comment out the for loop when you want to do everything
 //allCombinations.forEach((iteration) => {
@@ -127,4 +132,6 @@ for (let i = 0; i < 10; i++) {
 //sort by total cost and save out to a specific array
 allCombinations.sort((a, b) => a[0].totalCost - b[0].totalCost);
 let topTen = allCombinations.slice(0, 9);
+topTenFile = JSON.stringify(topTen);
+fs.writeFileSync("TopTen", topTenFile, "utf-8");
 console.log(topTen);
