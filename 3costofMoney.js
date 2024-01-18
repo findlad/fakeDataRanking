@@ -1,4 +1,5 @@
 import fs from "fs";
+import { addDaysToDate, subtractDaysFromDate } from "./timeAddFunctions.js";
 
 const combinations = fs.readFileSync("dateOptomised.json", "utf-8");
 
