@@ -1,58 +1,6 @@
-import { phase1, phase2, phase3, phase4 } from "./data.js";
-import { addDaysToDate, subtractDaysFromDate } from "./timeAddFunctions.js";
 import fs from "fs";
 
-// cartesian product, dont ask, i dont know, but it works
-const cartesian = (...a) =>
-  a.reduce((a, b) => a.flatMap((d) => b.map((e) => [d, e].flat())));
-
-//run all combinations
-
-let phase1Comb = cartesian(...phase1);
-let phase2Comb = cartesian(...phase2);
-let phase3Comb = cartesian(...phase3);
-let phase4Comb = cartesian(...phase4);
-let allCombinations = cartesian(phase1Comb, phase2Comb, phase3Comb, phase4Comb);
-
-//document all phases in dataset
-let phaseNumberArray = [];
-allCombinations[0].forEach((bid) => {
-  if (phaseNumberArray.indexOf(bid.phase) === -1)
-    phaseNumberArray.push(bid.phase);
-});
-// console.log(phaseNumberArray);
-
-//set global variables
-let interestRate = 0.15;
-let freeMoney = 50000;
-let startDay = "jan 01 2024";
-let count = 0;
-
-//figure out and append the phase length for each iteration plus move dates accordingly
-function moveDatesForPhase(allComb) {
-  allComb.forEach((iteration) => {
-    let phaseStart = new Date(startDay);
-    phaseNumberArray.forEach((phase) => {
-      let jobsInPhase = iteration.filter((combo) => combo.phase === phase);
-      jobsInPhase.sort((a, b) => b.length - a.length);
-      let phaseEnd;
-
-      jobsInPhase.forEach((bid) => {
-        bid.phaseLength = jobsInPhase[0].length;
-        bid.phaseStart = phaseStart;
-        bid.endDate = addDaysToDate(phaseStart, Number(jobsInPhase[0].length));
-        bid.startDate = subtractDaysFromDate(bid.endDate, Number(bid.length));
-        phaseEnd = addDaysToDate(phaseStart, Number(jobsInPhase[0].length));
-      });
-
-      phaseStart = addDaysToDate(phaseEnd, 1);
-    });
-
-    iteration.sort((a, b) => a.workPackage - b.workPackage);
-  });
-}
-
-moveDatesForPhase(allCombinations);
+const combinations = fs.readFileSync("dateOptomised.json", "utf-8");
 
 //REAL THINGfor every iteration, uncoment this and comment out the for loop when you want to do everything
 //allCombinations.forEach((iteration) => {
@@ -60,9 +8,9 @@ moveDatesForPhase(allCombinations);
 //   .filter((iter) => iter.phase > 0)
 //   .sort((a, b) => new Date(a.endDate) - new Date(b.endDate));
 //for loop for testing
-for (let i = 0; i < allCombinations.length; i++) {
+for (let i = 0; i < combinations.length; i++) {
   //TESTING sort by work package end date
-  allCombinations[i] = allCombinations[i]
+  combinations[i] = combinations[i]
     .filter((iter) => iter.phase > 0)
     .sort((a, b) => new Date(a.endDate) - new Date(b.endDate));
 
@@ -74,10 +22,10 @@ for (let i = 0; i < allCombinations.length; i++) {
   let inDebt = false;
   let debtStart = 0;
   let debtLevel = 0;
-  //lastProcessDate initially set to the end date of first bid allCombinations[i] for testing iteration[0] for real
-  let lastProcessDate = allCombinations[i].endDate;
+  //lastProcessDate initially set to the end date of first bid combinations[i] for testing iteration[0] for real
+  let lastProcessDate = combinations[i].endDate;
 
-  allCombinations[i].forEach((bid) => {
+  combinations[i].forEach((bid) => {
     //calculate construction cost as we go
     runTotal = bid.cost + runTotal;
     bid.runningTotal = runTotal;
@@ -118,8 +66,8 @@ for (let i = 0; i < allCombinations.length; i++) {
       bid.borrowAmount = 0;
     }
   });
-  //iteration for real, allcombinations[i] for testing]
-  allCombinations[i].unshift({
+  //iteration for real, combinations[i] for testing]
+  combinations[i].unshift({
     iterationID: count,
     constructionCost: runTotal,
     interest: interestRunningTotal.toFixed(2),
@@ -130,8 +78,10 @@ for (let i = 0; i < allCombinations.length; i++) {
 }
 
 //sort by total cost and save out to a specific array
-allCombinations.sort((a, b) => a[0].totalCost - b[0].totalCost);
-let topTen = allCombinations.slice(0, 9);
+combinations.sort((a, b) => a[0].totalCost - b[0].totalCost);
+allCombInterest = JSON.stringify(combinations);
+fs.writeFileSync("TopTen", allCombInterest, "utf-8");
+let topTen = combinations.slice(0, 9);
 topTenFile = JSON.stringify(topTen);
 fs.writeFileSync("TopTen", topTenFile, "utf-8");
 console.log(topTen);
