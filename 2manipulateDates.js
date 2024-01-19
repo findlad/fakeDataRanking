@@ -1,7 +1,18 @@
 import { addDaysToDate, subtractDaysFromDate } from "./timeAddFunctions.js";
 import fs from "fs";
+import { allCombinations } from "./1cartesianProduct.js";
+//const combinations = fs.readFileSync("allComb.json", "utf-8");
+let interestRate = 0.15;
+let freeMoney = 50000;
+let startDay = "jan 01 2024";
+let count = 0;
 
-const combinations = fs.readFileSync("allComb.json", "utf-8");
+//document all phases in dataset
+let phaseNumberArray = [];
+allCombinations[0].forEach((bid) => {
+  if (phaseNumberArray.indexOf(bid.phase) === -1)
+    phaseNumberArray.push(bid.phase);
+});
 
 function moveDatesForPhase(allComb) {
   allComb.forEach((iteration) => {
@@ -26,7 +37,8 @@ function moveDatesForPhase(allComb) {
   });
 }
 
-moveDatesForPhase(combinations);
+moveDatesForPhase(allCombinations);
 
-dateOptimisedFile = JSON.stringify(combinations);
-fs.writeFileSync("dateOptimised.json", allCombFile, "utf-8");
+// dateOptimisedFile = JSON.stringify(combinations);
+// fs.writeFileSync("dateOptimised.json", allCombFile, "utf-8");
+export { allCombinations };

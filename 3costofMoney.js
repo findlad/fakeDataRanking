@@ -1,7 +1,12 @@
 import fs from "fs";
 import { addDaysToDate, subtractDaysFromDate } from "./timeAddFunctions.js";
+import { allCombinations } from "./2manipulateDates.js";
+//const combinations = fs.readFileSync("dateOptomised.json", "utf-8");
 
-const combinations = fs.readFileSync("dateOptomised.json", "utf-8");
+let interestRate = 0.15;
+let freeMoney = 50000;
+let startDay = "jan 01 2024";
+let count = 0;
 
 //REAL THINGfor every iteration, uncoment this and comment out the for loop when you want to do everything
 //allCombinations.forEach((iteration) => {
@@ -9,9 +14,9 @@ const combinations = fs.readFileSync("dateOptomised.json", "utf-8");
 //   .filter((iter) => iter.phase > 0)
 //   .sort((a, b) => new Date(a.endDate) - new Date(b.endDate));
 //for loop for testing
-for (let i = 0; i < combinations.length; i++) {
+for (let i = 0; i < allCombinations.length; i++) {
   //TESTING sort by work package end date
-  combinations[i] = combinations[i]
+  allCombinations[i] = allCombinations[i]
     .filter((iter) => iter.phase > 0)
     .sort((a, b) => new Date(a.endDate) - new Date(b.endDate));
 
@@ -23,10 +28,10 @@ for (let i = 0; i < combinations.length; i++) {
   let inDebt = false;
   let debtStart = 0;
   let debtLevel = 0;
-  //lastProcessDate initially set to the end date of first bid combinations[i] for testing iteration[0] for real
-  let lastProcessDate = combinations[i].endDate;
+  //lastProcessDate initially set to the end date of first bid allCombinations[i] for testing iteration[0] for real
+  let lastProcessDate = allCombinations[i].endDate;
 
-  combinations[i].forEach((bid) => {
+  allCombinations[i].forEach((bid) => {
     //calculate construction cost as we go
     runTotal = bid.cost + runTotal;
     bid.runningTotal = runTotal;
@@ -67,8 +72,8 @@ for (let i = 0; i < combinations.length; i++) {
       bid.borrowAmount = 0;
     }
   });
-  //iteration for real, combinations[i] for testing]
-  combinations[i].unshift({
+  //iteration for real, allCombinations[i] for testing]
+  allCombinations[i].unshift({
     iterationID: count,
     constructionCost: runTotal,
     interest: interestRunningTotal.toFixed(2),
@@ -79,10 +84,10 @@ for (let i = 0; i < combinations.length; i++) {
 }
 
 //sort by total cost and save out to a specific array
-combinations.sort((a, b) => a[0].totalCost - b[0].totalCost);
-allCombInterest = JSON.stringify(combinations);
+allCombinations.sort((a, b) => a[0].totalCost - b[0].totalCost);
+allCombInterest = JSON.stringify(allCombinations);
 fs.writeFileSync("allCombInt.json", allCombInterest, "utf-8");
-let topTen = combinations.slice(0, 9);
+let topTen = allCombinations.slice(0, 9);
 topTenFile = JSON.stringify(topTen);
 fs.writeFileSync("TopTen.json", topTenFile, "utf-8");
 console.log(topTen);
