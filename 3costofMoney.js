@@ -81,8 +81,8 @@ for (let i = 0; i < combinations.length; i++) {
 //sort by total cost and save out to a specific array
 combinations.sort((a, b) => a[0].totalCost - b[0].totalCost);
 allCombInterest = JSON.stringify(combinations);
-fs.writeFileSync("TopTen", allCombInterest, "utf-8");
+fs.writeFileSync("allCombInt.json", allCombInterest, "utf-8");
 let topTen = combinations.slice(0, 9);
 topTenFile = JSON.stringify(topTen);
-fs.writeFileSync("TopTen", topTenFile, "utf-8");
+fs.writeFileSync("TopTen.json", topTenFile, "utf-8");
 console.log(topTen);
