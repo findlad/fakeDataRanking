@@ -1,7 +1,7 @@
 let workPackage1 = [
   {
     workPackage: 1,
-    phase: 1,
+    concurrentWP: 1,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "jan 5",
@@ -13,7 +13,7 @@ let workPackage1 = [
   },
   {
     workPackage: 1,
-    phase: 1,
+    concurrentWP: 1,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "jan 8",
@@ -25,7 +25,7 @@ let workPackage1 = [
   },
   {
     workPackage: 1,
-    phase: 1,
+    concurrentWP: 1,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "jan 2",
@@ -37,7 +37,7 @@ let workPackage1 = [
   },
   {
     workPackage: 1,
-    phase: 1,
+    concurrentWP: 1,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "jan 6",
@@ -49,7 +49,7 @@ let workPackage1 = [
   },
   {
     workPackage: 1,
-    phase: 1,
+    concurrentWP: 1,
     vendor: "ericcson",
     uniform2: "abc",
     startDate: "jan 3",
@@ -64,7 +64,7 @@ let workPackage1 = [
 let workPackage2 = [
   {
     workPackage: 2,
-    phase: 1,
+    concurrentWP: 1,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "jan 7",
@@ -76,7 +76,7 @@ let workPackage2 = [
   },
   {
     workPackage: 2,
-    phase: 1,
+    concurrentWP: 1,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "jan 2",
@@ -88,7 +88,7 @@ let workPackage2 = [
   },
   {
     workPackage: 2,
-    phase: 1,
+    concurrentWP: 1,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "jan 5",
@@ -103,7 +103,7 @@ let workPackage2 = [
 let workPackage3 = [
   {
     workPackage: 3,
-    phase: 1,
+    concurrentWP: 1,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "jan 4",
@@ -115,7 +115,7 @@ let workPackage3 = [
   },
   {
     workPackage: 3,
-    phase: 1,
+    concurrentWP: 1,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "jan 9",
@@ -127,7 +127,7 @@ let workPackage3 = [
   },
   {
     workPackage: 3,
-    phase: 1,
+    concurrentWP: 1,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "jan 1",
@@ -139,7 +139,7 @@ let workPackage3 = [
   },
   {
     workPackage: 3,
-    phase: 1,
+    concurrentWP: 1,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "jan 4",
@@ -154,7 +154,7 @@ let workPackage3 = [
 let workPackage4 = [
   {
     workPackage: 4,
-    phase: 2,
+    concurrentWP: 2,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "feb 6",
@@ -166,7 +166,7 @@ let workPackage4 = [
   },
   {
     workPackage: 4,
-    phase: 2,
+    concurrentWP: 2,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "feb 2",
@@ -178,7 +178,7 @@ let workPackage4 = [
   },
   {
     workPackage: 4,
-    phase: 2,
+    concurrentWP: 2,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "feb 5",
@@ -190,7 +190,7 @@ let workPackage4 = [
   },
   {
     workPackage: 4,
-    phase: 2,
+    concurrentWP: 2,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "feb 3",
@@ -205,7 +205,7 @@ let workPackage4 = [
 let workPackage5 = [
   {
     workPackage: 5,
-    phase: 2,
+    concurrentWP: 2,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "feb 8",
@@ -217,7 +217,7 @@ let workPackage5 = [
   },
   {
     workPackage: 5,
-    phase: 2,
+    concurrentWP: 2,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "feb 2",
@@ -229,7 +229,7 @@ let workPackage5 = [
   },
   {
     workPackage: 5,
-    phase: 2,
+    concurrentWP: 2,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "feb 7",
@@ -241,7 +241,7 @@ let workPackage5 = [
   },
   {
     workPackage: 5,
-    phase: 2,
+    concurrentWP: 2,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "feb 4",
@@ -256,7 +256,7 @@ let workPackage5 = [
 let workPackage6 = [
   {
     workPackage: 6,
-    phase: 2,
+    concurrentWP: 2,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "feb 3",
@@ -268,7 +268,7 @@ let workPackage6 = [
   },
   {
     workPackage: 6,
-    phase: 2,
+    concurrentWP: 2,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "feb 6",
@@ -280,7 +280,7 @@ let workPackage6 = [
   },
   {
     workPackage: 6,
-    phase: 2,
+    concurrentWP: 2,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "feb 1",
@@ -292,7 +292,7 @@ let workPackage6 = [
   },
   {
     workPackage: 6,
-    phase: 2,
+    concurrentWP: 2,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "feb 5",
@@ -307,7 +307,7 @@ let workPackage6 = [
 let workPackage7 = [
   {
     workPackage: 7,
-    phase: 3,
+    concurrentWP: 3,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "mar 4",
@@ -319,7 +319,7 @@ let workPackage7 = [
   },
   {
     workPackage: 7,
-    phase: 3,
+    concurrentWP: 3,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "mar 7",
@@ -331,7 +331,7 @@ let workPackage7 = [
   },
   {
     workPackage: 7,
-    phase: 3,
+    concurrentWP: 3,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "mar 2",
@@ -343,7 +343,7 @@ let workPackage7 = [
   },
   {
     workPackage: 7,
-    phase: 3,
+    concurrentWP: 3,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "mar 6",
@@ -358,7 +358,7 @@ let workPackage7 = [
 let workPackage8 = [
   {
     workPackage: 8,
-    phase: 3,
+    concurrentWP: 3,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "mar 5",
@@ -370,7 +370,7 @@ let workPackage8 = [
   },
   {
     workPackage: 8,
-    phase: 3,
+    concurrentWP: 3,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "mar 9",
@@ -382,7 +382,7 @@ let workPackage8 = [
   },
   {
     workPackage: 8,
-    phase: 3,
+    concurrentWP: 3,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "mar 1",
@@ -394,7 +394,7 @@ let workPackage8 = [
   },
   {
     workPackage: 8,
-    phase: 3,
+    concurrentWP: 3,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "mar 4",
@@ -409,7 +409,7 @@ let workPackage8 = [
 let workPackage9 = [
   {
     workPackage: 9,
-    phase: 3,
+    concurrentWP: 3,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "mar 6",
@@ -421,7 +421,7 @@ let workPackage9 = [
   },
   {
     workPackage: 9,
-    phase: 3,
+    concurrentWP: 3,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "mar 2",
@@ -433,7 +433,7 @@ let workPackage9 = [
   },
   {
     workPackage: 9,
-    phase: 3,
+    concurrentWP: 3,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "mar 5",
@@ -445,7 +445,7 @@ let workPackage9 = [
   },
   {
     workPackage: 9,
-    phase: 3,
+    concurrentWP: 3,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "mar 3",
@@ -460,7 +460,7 @@ let workPackage9 = [
 let workPackage10 = [
   {
     workPackage: 10,
-    phase: 4,
+    concurrentWP: 4,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "apr 8",
@@ -472,7 +472,7 @@ let workPackage10 = [
   },
   {
     workPackage: 10,
-    phase: 4,
+    concurrentWP: 4,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "apr 2",
@@ -484,7 +484,7 @@ let workPackage10 = [
   },
   {
     workPackage: 10,
-    phase: 4,
+    concurrentWP: 4,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "apr 7",
@@ -496,7 +496,7 @@ let workPackage10 = [
   },
   {
     workPackage: 10,
-    phase: 4,
+    concurrentWP: 4,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "apr 4",
@@ -511,7 +511,7 @@ let workPackage10 = [
 let workPackage11 = [
   {
     workPackage: 11,
-    phase: 4,
+    concurrentWP: 4,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "apr 3",
@@ -523,7 +523,7 @@ let workPackage11 = [
   },
   {
     workPackage: 11,
-    phase: 4,
+    concurrentWP: 4,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "apr 6",
@@ -535,7 +535,7 @@ let workPackage11 = [
   },
   {
     workPackage: 11,
-    phase: 4,
+    concurrentWP: 4,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "apr 1",
@@ -547,7 +547,7 @@ let workPackage11 = [
   },
   {
     workPackage: 11,
-    phase: 4,
+    concurrentWP: 4,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "apr 5",
@@ -562,7 +562,7 @@ let workPackage11 = [
 let workPackage12 = [
   {
     workPackage: 12,
-    phase: 4,
+    concurrentWP: 4,
     vendor: "amazon",
     uniform2: "abc",
     startDate: "apr 4",
@@ -574,7 +574,7 @@ let workPackage12 = [
   },
   {
     workPackage: 12,
-    phase: 4,
+    concurrentWP: 4,
     vendor: "bloomberg",
     uniform2: "abc",
     startDate: "apr 7",
@@ -586,7 +586,7 @@ let workPackage12 = [
   },
   {
     workPackage: 12,
-    phase: 4,
+    concurrentWP: 4,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "apr 2",
@@ -598,7 +598,7 @@ let workPackage12 = [
   },
   {
     workPackage: 12,
-    phase: 4,
+    concurrentWP: 4,
     vendor: "dennys",
     uniform2: "abc",
     startDate: "apr 6",
@@ -610,9 +610,9 @@ let workPackage12 = [
   },
 ];
 
-let phase1 = [workPackage1, workPackage2, workPackage3];
-let phase2 = [workPackage4, workPackage5, workPackage6];
-let phase3 = [workPackage7, workPackage8, workPackage9];
-let phase4 = [workPackage10, workPackage11, workPackage12];
+let concurrentWP1 = [workPackage1, workPackage2, workPackage3];
+let concurrentWP2 = [workPackage4, workPackage5, workPackage6];
+let concurrentWP3 = [workPackage7, workPackage8, workPackage9];
+let concurrentWP4 = [workPackage10, workPackage11, workPackage12];
 
-export { phase1, phase2, phase3, phase4 };
+export { concurrentWP1, concurrentWP2, concurrentWP3, concurrentWP4 };

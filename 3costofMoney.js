@@ -1,19 +1,19 @@
 import fs from "fs";
 import { addDaysToDate, subtractDaysFromDate } from "./timeAddFunctions.js";
 import { allCombinations } from "./2manipulateDates.js";
-//const combinations = fs.readFileSync("dateOptomised.json", "utf-8");
+
+//fs crashing everything
+//const allCombinations = fs.readFileSync("dateOptomised.json", "utf-8");
+
+console.log("A");
 
 let interestRate = 0.15;
 let freeMoney = 50000;
-let startDay = "jan 01 2024";
+let startDay = "jan 01 2025";
 let count = 0;
 
-//REAL THINGfor every iteration, uncoment this and comment out the for loop when you want to do everything
-//allCombinations.forEach((iteration) => {
-// iteration = iteration
-//   .filter((iter) => iter.phase > 0)
-//   .sort((a, b) => new Date(a.endDate) - new Date(b.endDate));
-//for loop for testing
+console.log("B");
+
 for (let i = 0; i < allCombinations.length; i++) {
   //TESTING sort by work package end date
   allCombinations[i] = allCombinations[i]
@@ -21,6 +21,7 @@ for (let i = 0; i < allCombinations.length; i++) {
     .sort((a, b) => new Date(a.endDate) - new Date(b.endDate));
 
   //set variables for each iteration
+  let dayOfMonthForInterest = 1;
   let runTotal = 0;
   let daysSinceLastBid = 0;
   let interestSinceLastBid = 0;
@@ -50,14 +51,14 @@ for (let i = 0; i < allCombinations.length; i++) {
 
     //test to see if we need to spend the loan
     if (inDebt === true) {
-      //using borrowed money: simple interest! Do we need compound?
+      //using borrowed money: simple interest! Do we need compound? Loan structure compounds monthly
       interestSinceLastBid =
         ((debtLevel * interestRate) / 365.25) * daysSinceLastBid;
       interestRunningTotal = interestRunningTotal + interestSinceLastBid;
       bid.costOfMoney = interestRunningTotal;
       //set new debt level for the analysis of the next bid
       debtLevel = runTotal - freeMoney;
-      //havent paid nay interest yet! only just borrowed it
+      //haven`t paid any interest yet! only just borrowed it
       bid.borrowAmount = debtLevel;
     } else if (runTotal - freeMoney > 0) {
       //set up to calculate interest next time
@@ -82,11 +83,11 @@ for (let i = 0; i < allCombinations.length; i++) {
 
   count++;
 }
-
+console.log("D");
 //sort by total cost and save out to a specific array
 allCombinations.sort((a, b) => a[0].totalCost - b[0].totalCost);
 allCombInterest = JSON.stringify(allCombinations);
-fs.writeFileSync("allCombInt.json", allCombInterest, "utf-8");
+// fs.writeFileSync("allCombInt.json", allCombInterest, "utf-8");
 let topTen = allCombinations.slice(0, 9);
 topTenFile = JSON.stringify(topTen);
 fs.writeFileSync("TopTen.json", topTenFile, "utf-8");

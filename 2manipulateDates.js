@@ -8,13 +8,14 @@ let startDay = "jan 01 2024";
 let count = 0;
 
 //document all phases in dataset
-let phaseNumberArray = [];
+console.log("a");
+let concurrentWPNumberArray = [];
 allCombinations[0].forEach((bid) => {
-  if (phaseNumberArray.indexOf(bid.phase) === -1)
-    phaseNumberArray.push(bid.phase);
+  if (concurrentWPNumberArray.indexOf(bid.concurrentWP) === -1)
+    concurrentWPNumberArray.push(bid.concurrentWP);
 });
-
-function moveDatesForPhase(allComb) {
+console.log("b");
+function moveDatesForconcurrentWP(allComb) {
   allComb.forEach((iteration) => {
     let phaseStart = new Date(startDay);
     phaseNumberArray.forEach((phase) => {
@@ -36,9 +37,9 @@ function moveDatesForPhase(allComb) {
     iteration.sort((a, b) => a.workPackage - b.workPackage);
   });
 }
-
+console.log("c");
 moveDatesForPhase(allCombinations);
-
+console.log("d");
 // dateOptimisedFile = JSON.stringify(combinations);
 // fs.writeFileSync("dateOptimised.json", allCombFile, "utf-8");
 export { allCombinations };
