@@ -1,12 +1,11 @@
+import fs from "fs";
+import msgpack from "msgpack-lite";
 import {
   concurrentWP1,
   concurrentWP2,
   concurrentWP3,
   concurrentWP4,
 } from "./0data.js";
-import json from "big-json";
-import JSONStream from "JSONStream";
-import fs from "fs";
 
 // cartesian product
 const cartesian = (...a) =>
@@ -28,8 +27,17 @@ let allCombinations = cartesian(
   concurrentWP4Comb
 );
 console.log("6");
+// //nothing saves out
+// var writeStream = fs.createWriteStream("allcomb.msp");
+// console.log("7");
+// var encodeStream = msgpack.createEncodeStream();
+// console.log("8");
+// encodeStream.pipe(writeStream);
+// console.log("9");
+// // send multiple objects to stream
+// encodeStream.write(allCombinations);
+// console.log("10");
+// // call this once you're done writing to the stream.
+// encodeStream.end();
 
-// fs.writeFile("allComb.json", JSON.stringify(allCombinations));
-
-console.log("7");
 export { allCombinations };

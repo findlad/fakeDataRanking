@@ -14,7 +14,7 @@ let count = 0;
 
 console.log("B");
 
-for (let i = 0; i < allCombinations.length; i++) {
+for (let i = 0; i < 250; i++) {
   //TESTING sort by work package end date
   allCombinations[i] = allCombinations[i]
     .filter((iter) => iter.phase > 0)
@@ -86,9 +86,24 @@ for (let i = 0; i < allCombinations.length; i++) {
 console.log("D");
 //sort by total cost and save out to a specific array
 allCombinations.sort((a, b) => a[0].totalCost - b[0].totalCost);
-allCombInterest = JSON.stringify(allCombinations);
+console.log("E");
+// allCombInterest = JSON.stringify(allCombinations);
 // fs.writeFileSync("allCombInt.json", allCombInterest, "utf-8");
-let topTen = allCombinations.slice(0, 9);
-topTenFile = JSON.stringify(topTen);
-fs.writeFileSync("TopTen.json", topTenFile, "utf-8");
+let top100 = allCombinations.slice(0, 99);
+console.log("F");
+top100File = JSON.stringify(top100);
+// fs.writeFileSync("TopTen.json", top100File, "utf-8");
+//nothing saves out
+var writeStream = fs.createWriteStream("top100.msp");
+console.log("7");
+var encodeStream = msgpack.createEncodeStream();
+console.log("8");
+encodeStream.pipe(writeStream);
+console.log("9");
+// send multiple objects to stream
+encodeStream.write(top100File);
+console.log("10");
+// call this once you're done writing to the stream.
+encodeStream.end();
+
 console.log(topTen);

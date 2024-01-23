@@ -610,8 +610,8 @@ let workPackage12 = [
   },
 ];
 
-let concurrentWP1 = [workPackage1, workPackage2, workPackage3];
-let concurrentWP2 = [workPackage4, workPackage5, workPackage6];
+let concurrentWP1 = [workPackage1, workPackage2, workPackage3, workPackage4];
+let concurrentWP2 = [workPackage5, workPackage6];
 let concurrentWP3 = [workPackage7, workPackage8, workPackage9];
 let concurrentWP4 = [workPackage10, workPackage11, workPackage12];
 
