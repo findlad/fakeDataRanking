@@ -1,4 +1,8 @@
-import { addDaysToDate, subtractDaysFromDate } from "./timeAddFunctions.js";
+import {
+  addDaysToDate,
+  subtractDaysFromDate,
+  convertToDate,
+} from "./timeAddFunctions.js";
 import fs from "fs";
 import msgpack from "msgpack-lite";
 import { allCombinations } from "./1cartesianProduct.js";
@@ -7,63 +11,60 @@ import { allCombinations } from "./1cartesianProduct.js";
 // var allCombinations = msgpack.createDecodeStream();
 // readStream.pipe(allCombinations).on("data", console.warn);
 
-let interestRate = 0.15;
-let freeMoney = 50000;
-let startDay = "jan 01 2024";
-let count = 0;
+let startDay = "jan 01";
 
 //document all phases in dataset
 console.log("a");
-let concurrentWPNumberArray = [];
+let CWPNumberArray = [];
 allCombinations[0].forEach((bid) => {
-  if (concurrentWPNumberArray.indexOf(bid.concurrentWP) === -1)
-    concurrentWPNumberArray.push(bid.concurrentWP);
+  if (CWPNumberArray.indexOf(bid.CWP) === -1) CWPNumberArray.push(bid.CWP);
 });
-console.log("b");
-function moveDatesForconcurrentWP(allComb) {
-  allComb.forEach((iteration) => {
-    let concurrentWPStart = new Date(startDay);
-    concurrentWPNumberArray.forEach((concurrentWP) => {
-      let jobsInconcurrentWP = iteration.filter(
-        (combo) => combo.concurrentWP === concurrentWP
-      );
-      jobsInconcurrentWP.sort((a, b) => b.length - a.length);
-      let concurrentWPEnd;
 
-      jobsInconcurrentWP.forEach((bid) => {
-        bid.concurrentWPLength = jobsInconcurrentWP[0].length;
-        bid.concurrentWPStart = concurrentWPStart;
-        bid.endDate = addDaysToDate(
-          concurrentWPStart,
-          Number(jobsInconcurrentWP[0].length)
-        );
+console.log("b");
+
+function moveDatesForCWP(allComb) {
+  allComb.forEach((iteration) => {
+    let CWPStart = new Date(startDay);
+    CWPNumberArray.forEach((CWP) => {
+      let jobsInCWP = iteration.filter((combo) => combo.CWP === CWP);
+      jobsInCWP.sort((a, b) => b.length - a.length);
+      let CWPEnd;
+
+      jobsInCWP.forEach((bid) => {
+        bid.startDate = convertToDate(bid.startDate);
+        bid.endDate = convertToDate(bid.endDate);
+        bid.CWPLength = jobsInCWP[0].length;
+        bid.CWPStart = CWPStart;
+        bid.endDate = addDaysToDate(CWPStart, Number(jobsInCWP[0].length));
         bid.startDate = subtractDaysFromDate(bid.endDate, Number(bid.length));
-        concurrentWPEnd = addDaysToDate(
-          concurrentWPStart,
-          Number(jobsInconcurrentWP[0].length)
-        );
+        CWPEnd = addDaysToDate(CWPStart, Number(jobsInCWP[0].length));
       });
 
-      concurrentWPStart = addDaysToDate(concurrentWPEnd, 1);
+      CWPStart = addDaysToDate(CWPEnd, 1);
     });
 
     iteration.sort((a, b) => a.workPackage - b.workPackage);
   });
 }
 console.log("c");
-moveDatesForconcurrentWP(allCombinations);
+moveDatesForCWP(allCombinations);
 console.log("d");
+let moveDateSample = allCombinations.slice(0, 9);
+console.log("e");
+let moveDateJson = JSON.stringify(moveDateSample);
+console.log("f");
+fs.writeFileSync("moveData.json", moveDateJson, "utf-8");
 
 // var writeStream = fs.createWriteStream("dateOptimised.msp");
-// console.log("e");
-// var encodeStream = msgpack.createEncodeStream();
-// console.log("f");
-// encodeStream.pipe(writeStream);
 // console.log("g");
+// var encodeStream = msgpack.createEncodeStream();
+// console.log("h");
+// encodeStream.pipe(writeStream);
+// console.log("i");
 // // send multiple objects to stream
 // encodeStream.write(allCombinations);
-// console.log("h");
+// console.log("j");
 // // call this once you're done writing to the stream.
 // encodeStream.end();
 
-export { allCombinations };
+export { allCombinations, startDay };

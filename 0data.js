@@ -613,6 +613,6 @@ let workPackage12 = [
 let concurrentWP1 = [workPackage1, workPackage2, workPackage3, workPackage4];
 let concurrentWP2 = [workPackage5, workPackage6];
 let concurrentWP3 = [workPackage7, workPackage8, workPackage9];
-let concurrentWP4 = [workPackage10, workPackage11, workPackage12];
+// let concurrentWP4 = [workPackage10, workPackage11, workPackage12];
 
-export { concurrentWP1, concurrentWP2, concurrentWP3, concurrentWP4 };
+export { concurrentWP1, concurrentWP2, concurrentWP3 };
