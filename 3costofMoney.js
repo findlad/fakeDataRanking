@@ -6,6 +6,13 @@ import { addDaysToDate, subtractDaysFromDate } from "./timeAddFunctions.js";
 //fs crashing everything
 //const allCombinations = fs.readFileSync("dateOptomised.json", "utf-8");
 
+let allowedToPrint = true;
+function print(printThis) {
+  if (allowedToPrint) {
+    console.log(printThis);
+  }
+}
+
 console.log("A");
 
 let interestRate = 0.15;
@@ -15,9 +22,8 @@ let count = 0;
 console.log("B");
 
 for (let i = 0; i < allCombinations.length; i++) {
-  //TESTING sort by work package end date
   allCombinations[i] = allCombinations[i]
-    .filter((iter) => iter.concurrentWP > 0)
+    // .filter((iter) => iter.concurrentWP > 0)
     .sort((a, b) => new Date(a.endDate) - new Date(b.endDate));
 
   //set variables for each iteration
@@ -36,26 +42,30 @@ for (let i = 0; i < allCombinations.length; i++) {
     //calculate construction cost as we go
     runTotal = bid.cost + runTotal;
     bid.runningTotal = runTotal;
-
+    console.log(bid.ID, "--------------");
+    console.log("running total ", bid.runningTotal);
     //cost of money, we need to know interest rate, amount borrowed, and time its been borrowed
     //figure out time since last bid was processed
-    daysSinceLastBid = (bid.endDate - new Date(lastProcessDate)) / 86400000;
-
+    daysSinceLastBid = (bid.endDate - lastProcessDate) / 86400000;
+    console.log("days since last bid: ", daysSinceLastBid);
     //set lastprocessdate for the analysis of the next bid. This must update as we go along like running total
-    lastProcessDate = new Date(bid.endDate);
-
+    lastProcessDate = bid.endDate;
+    console.log("last bid process date: ", lastProcessDate);
     //figure out how far we are into the project
-    bid.daysIntoProject = (bid.endDate - new Date(startDay)) / 86400000;
-
+    bid.daysIntoProject = Number((bid.endDate - new Date(startDay)) / 86400000);
+    console.log("days into project: ", bid.daysIntoProject);
     //test to see if we need to spend the loan
     if (inDebt === true) {
       //using borrowed money: simple interest! Do we need compound? Loan structure compounds monthly
       interestSinceLastBid =
         ((debtLevel * interestRate) / 365.25) * daysSinceLastBid;
+      console.log("interest since last bid: ", interestSinceLastBid);
       interestRunningTotal = interestRunningTotal + interestSinceLastBid;
+      console.log("interest running total: ", interestRunningTotal);
       bid.costOfMoney = interestRunningTotal;
       //set new debt level for the analysis of the next bid
       debtLevel = runTotal - freeMoney;
+      console.log("debt level: ", debtLevel);
       //haven`t paid any interest yet! only just borrowed it
       bid.borrowAmount = debtLevel;
     } else if (runTotal - freeMoney > 0) {
@@ -71,7 +81,7 @@ for (let i = 0; i < allCombinations.length; i++) {
       bid.borrowAmount = 0;
     }
   });
-  //iteration for real, allCombinations[i] for testing]
+  //once all bids in iteration are processed, add the meta data
   allCombinations[i].unshift({
     iterationID: count,
     constructionCost: runTotal,
@@ -87,7 +97,7 @@ allCombinations.sort((a, b) => a[0].totalCost - b[0].totalCost);
 console.log("E");
 // allCombInterest = JSON.stringify(allCombinations);
 // fs.writeFileSync("allCombInt.json", allCombInterest, "utf-8");
-let top100 = allCombinations.slice(0, 99);
+let top100 = allCombinations.slice(0, 9);
 console.log("F");
 let top100File = JSON.stringify(top100);
 fs.writeFileSync("TopTen.json", top100File, "utf-8");

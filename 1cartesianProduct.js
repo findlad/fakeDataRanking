@@ -40,4 +40,8 @@ console.log("6");
 // // call this once you're done writing to the stream.
 // encodeStream.end();
 
+let allcombSample = allCombinations.slice(0, 9);
+let sampleFile = JSON.stringify(allcombSample);
+fs.writeFileSync("cartesianSample.json", sampleFile, "utf-8");
+
 export { allCombinations };

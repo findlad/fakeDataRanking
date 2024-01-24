@@ -11,48 +11,72 @@ import { allCombinations } from "./1cartesianProduct.js";
 // var allCombinations = msgpack.createDecodeStream();
 // readStream.pipe(allCombinations).on("data", console.warn);
 
-let startDay = "jan 01";
+let startDay = "jan 01 2024";
 
-//document all phases in dataset
 console.log("a");
+//document all CWP in dataset
 let CWPNumberArray = [];
 allCombinations[0].forEach((bid) => {
-  if (CWPNumberArray.indexOf(bid.CWP) === -1) CWPNumberArray.push(bid.CWP);
+  if (CWPNumberArray.indexOf(bid.concurrentWP) === -1)
+    CWPNumberArray.push(bid.concurrentWP);
 });
-
+// console.log(CWPNumberArray);
 console.log("b");
 
 function moveDatesForCWP(allComb) {
-  allComb.forEach((iteration) => {
-    let CWPStart = new Date(startDay);
+  allComb.forEach((iteration, index) => {
+    // if (index !== 0) return;
     CWPNumberArray.forEach((CWP) => {
-      let jobsInCWP = iteration.filter((combo) => combo.CWP === CWP);
+      let CWPStart = new Date(startDay);
+      // console.log("project start date", CWPStart);
+      //filter on each CWP
+      let jobsInCWP = iteration.filter((combo) => combo.concurrentWP === CWP);
+      //sort the CWP so the longest job is first
       jobsInCWP.sort((a, b) => b.length - a.length);
       let CWPEnd;
 
       jobsInCWP.forEach((bid) => {
+        //convert start and end dates to date objects
         bid.startDate = convertToDate(bid.startDate);
+        // console.log("Bid start date ", bid.startDate);
         bid.endDate = convertToDate(bid.endDate);
-        bid.CWPLength = jobsInCWP[0].length;
+        // console.log("Bid end date ", bid.endDate);
+        //figure out the length of the longest job
+        bid.CWPLength = Number(jobsInCWP[0].length);
+        // console.log("CWP length " + bid.CWPLength);
+        //add the CWP start date to each bid
         bid.CWPStart = CWPStart;
-        bid.endDate = addDaysToDate(CWPStart, Number(jobsInCWP[0].length));
+        // console.log("CWP start date ", bid.CWPStart);
+        bid.endDate = addDaysToDate(CWPStart, bid.CWPLength);
+        // console.log("altered Bid End Date: ", bid.endDate);
         bid.startDate = subtractDaysFromDate(bid.endDate, Number(bid.length));
+        // console.log("altered Bid Start Date: ", bid.startDate);
         CWPEnd = addDaysToDate(CWPStart, Number(jobsInCWP[0].length));
+        // console.log("CWP END: ", CWPEnd);
+        // console.log("------------------");
       });
-
+      //something wrong here
       CWPStart = addDaysToDate(CWPEnd, 1);
     });
 
     iteration.sort((a, b) => a.workPackage - b.workPackage);
   });
 }
+
 console.log("c");
+
 moveDatesForCWP(allCombinations);
+
 console.log("d");
+
 let moveDateSample = allCombinations.slice(0, 9);
+
 console.log("e");
+
 let moveDateJson = JSON.stringify(moveDateSample);
+
 console.log("f");
+
 fs.writeFileSync("moveData.json", moveDateJson, "utf-8");
 
 // var writeStream = fs.createWriteStream("dateOptimised.msp");
