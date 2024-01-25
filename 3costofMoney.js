@@ -36,12 +36,13 @@ for (let i = 0; i < allCombinations.length; i++) {
   let inDebt = false;
   let debtStart = 0;
   let debtLevel = 0;
+  let durationRunningTotal = 0;
   //lastProcessDate initially set to the end date of first bid allCombinations[i] for testing iteration[0] for real
   let lastProcessDate = allCombinations[i].endDate;
 
   allCombinations[i].forEach((bid) => {
     //calculate construction cost as we go
-    runTotal = bid.cost + runTotal;
+    runTotal += bid.cost;
     bid.runningTotal = runTotal;
     // console.log(bid.ID, "--------------");
     // console.log("running total ", bid.runningTotal);
@@ -116,4 +117,4 @@ jsonStream.end();
 console.log("G");
 
 let top100File = JSON.stringify(top100);
-fs.writeFileSync("TopTen.json", top100File, "utf-8");
+fs.writeFileSync("TopTenz.json", top100File, "utf-8");

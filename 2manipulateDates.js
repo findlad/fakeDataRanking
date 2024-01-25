@@ -22,7 +22,7 @@ allCombinations[0].forEach((bid) => {
 });
 // console.log(CWPNumberArray);
 console.log("b");
-
+let durationRunTotal = 0;
 function moveDatesForCWP(allComb) {
   allComb.forEach((iteration, index) => {
     // if (index !== 0) return; //use to only run once, for debugging
@@ -34,8 +34,9 @@ function moveDatesForCWP(allComb) {
       //sort the CWP so the longest job is first
       jobsInCWP.sort((a, b) => b.length - a.length);
       let CWPEnd;
-
+      durationRunTotal += Number(jobsInCWP[0].length);
       jobsInCWP.forEach((bid) => {
+        bid.runningDurtion = durationRunTotal;
         // console.log("current CWP ", bid.concurrentWP);
         //convert start and end dates to date objects
         bid.startDate = convertToDate(bid.startDate);
