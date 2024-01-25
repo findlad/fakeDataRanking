@@ -42,30 +42,30 @@ for (let i = 0; i < allCombinations.length; i++) {
     //calculate construction cost as we go
     runTotal = bid.cost + runTotal;
     bid.runningTotal = runTotal;
-    console.log(bid.ID, "--------------");
-    console.log("running total ", bid.runningTotal);
+    // console.log(bid.ID, "--------------");
+    // console.log("running total ", bid.runningTotal);
     //cost of money, we need to know interest rate, amount borrowed, and time its been borrowed
     //figure out time since last bid was processed
     daysSinceLastBid = (bid.endDate - lastProcessDate) / 86400000;
-    console.log("days since last bid: ", daysSinceLastBid);
+    // console.log("days since last bid: ", daysSinceLastBid);
     //set lastprocessdate for the analysis of the next bid. This must update as we go along like running total
     lastProcessDate = bid.endDate;
-    console.log("last bid process date: ", lastProcessDate);
+    // console.log("last bid process date: ", lastProcessDate);
     //figure out how far we are into the project
     bid.daysIntoProject = Number((bid.endDate - new Date(startDay)) / 86400000);
-    console.log("days into project: ", bid.daysIntoProject);
+    // console.log("days into project: ", bid.daysIntoProject);
     //test to see if we need to spend the loan
     if (inDebt === true) {
       //using borrowed money: simple interest! Do we need compound? Loan structure compounds monthly
       interestSinceLastBid =
         ((debtLevel * interestRate) / 365.25) * daysSinceLastBid;
-      console.log("interest since last bid: ", interestSinceLastBid);
+      // console.log("interest since last bid: ", interestSinceLastBid);
       interestRunningTotal = interestRunningTotal + interestSinceLastBid;
-      console.log("interest running total: ", interestRunningTotal);
+      // console.log("interest running total: ", interestRunningTotal);
       bid.costOfMoney = interestRunningTotal;
       //set new debt level for the analysis of the next bid
       debtLevel = runTotal - freeMoney;
-      console.log("debt level: ", debtLevel);
+      // console.log("debt level: ", debtLevel);
       //haven`t paid any interest yet! only just borrowed it
       bid.borrowAmount = debtLevel;
     } else if (runTotal - freeMoney > 0) {

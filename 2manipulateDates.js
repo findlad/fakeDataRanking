@@ -25,9 +25,9 @@ console.log("b");
 
 function moveDatesForCWP(allComb) {
   allComb.forEach((iteration, index) => {
-    // if (index !== 0) return;
+    // if (index !== 0) return; //use to only run once, for debugging
+    let CWPStart = new Date(startDay);
     CWPNumberArray.forEach((CWP) => {
-      let CWPStart = new Date(startDay);
       // console.log("project start date", CWPStart);
       //filter on each CWP
       let jobsInCWP = iteration.filter((combo) => combo.concurrentWP === CWP);
@@ -36,11 +36,13 @@ function moveDatesForCWP(allComb) {
       let CWPEnd;
 
       jobsInCWP.forEach((bid) => {
+        // console.log("current CWP ", bid.concurrentWP);
         //convert start and end dates to date objects
         bid.startDate = convertToDate(bid.startDate);
         // console.log("Bid start date ", bid.startDate);
         bid.endDate = convertToDate(bid.endDate);
         // console.log("Bid end date ", bid.endDate);
+        // console.log("current bid length: ", bid.length);
         //figure out the length of the longest job
         bid.CWPLength = Number(jobsInCWP[0].length);
         // console.log("CWP length " + bid.CWPLength);
@@ -57,6 +59,7 @@ function moveDatesForCWP(allComb) {
       });
       //something wrong here
       CWPStart = addDaysToDate(CWPEnd, 1);
+      // console.log("updated CWP start date ", CWPStart);
     });
 
     iteration.sort((a, b) => a.workPackage - b.workPackage);
