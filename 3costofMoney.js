@@ -2,6 +2,7 @@ import fs from "fs";
 import msgpack from "msgpack-lite";
 import { allCombinations, startDay } from "./2manipulateDates.js";
 import { addDaysToDate, subtractDaysFromDate } from "./timeAddFunctions.js";
+import JSONStream from "JSONStream";
 
 //fs crashing everything
 //const allCombinations = fs.readFileSync("dateOptomised.json", "utf-8");
@@ -95,23 +96,24 @@ console.log("D");
 //sort by total cost and save out to a specific array
 allCombinations.sort((a, b) => a[0].totalCost - b[0].totalCost);
 console.log("E");
+// too big for stringify
 // allCombInterest = JSON.stringify(allCombinations);
-// fs.writeFileSync("allCombInt.json", allCombInterest, "utf-8");
+// fs.writeFileSync("allCombIntz.json", allCombInterest, "utf-8");
 let top100 = allCombinations.slice(0, 9);
 console.log("F");
+
+const stream = fs.createWriteStream("allCombIntz.json");
+const jsonStream = JSONStream.stringify();
+jsonStream.pipe(stream);
+
+// Assuming allCombinations is an array
+allCombinations.forEach((combination) => {
+  jsonStream.write(combination);
+});
+
+jsonStream.end();
+
+console.log("G");
+
 let top100File = JSON.stringify(top100);
 fs.writeFileSync("TopTen.json", top100File, "utf-8");
-//nothing saves out
-// var writeStream = fs.createWriteStream("top100.msp");
-// console.log("7");
-// var encodeStream = msgpack.createEncodeStream();
-// console.log("8");
-// encodeStream.pipe(writeStream);
-// console.log("9");
-// // send multiple objects to stream
-// encodeStream.write(top100File);
-// console.log("10");
-// // call this once you're done writing to the stream.
-// encodeStream.end();
-
-// console.log(top100);
