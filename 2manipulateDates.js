@@ -4,12 +4,7 @@ import {
   convertToDate,
 } from "./timeAddFunctions.js";
 import fs from "fs";
-import msgpack from "msgpack-lite";
 import { allCombinations } from "./1cartesianProduct.js";
-
-// var readStream = fs.createReadStream("allcomb.msp");
-// var allCombinations = msgpack.createDecodeStream();
-// readStream.pipe(allCombinations).on("data", console.warn);
 
 let startDay = "jan 01 2024";
 
@@ -36,7 +31,7 @@ function moveDatesForCWP(allComb) {
       let CWPEnd;
       durationRunTotal += Number(jobsInCWP[0].length);
       jobsInCWP.forEach((bid) => {
-        bid.runningDurtion = durationRunTotal;
+        bid.durationToDate = durationRunTotal;
         // console.log("current CWP ", bid.concurrentWP);
         //convert start and end dates to date objects
         bid.startDate = convertToDate(bid.startDate);
@@ -58,7 +53,7 @@ function moveDatesForCWP(allComb) {
         // console.log("CWP END: ", CWPEnd);
         // console.log("------------------");
       });
-      //something wrong here
+      //reset date for next CWP
       CWPStart = addDaysToDate(CWPEnd, 1);
       // console.log("updated CWP start date ", CWPStart);
     });
@@ -81,7 +76,7 @@ let moveDateJson = JSON.stringify(moveDateSample);
 
 console.log("f");
 
-fs.writeFileSync("moveData.json", moveDateJson, "utf-8");
+fs.writeFileSync("moveDataz.json", moveDateJson, "utf-8");
 
 // var writeStream = fs.createWriteStream("dateOptimised.msp");
 // console.log("g");

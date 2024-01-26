@@ -3,9 +3,12 @@ import msgpack from "msgpack-lite";
 import { allCombinations, startDay } from "./2manipulateDates.js";
 import { addDaysToDate, subtractDaysFromDate } from "./timeAddFunctions.js";
 import JSONStream from "JSONStream";
-
-//fs crashing everything
-//const allCombinations = fs.readFileSync("dateOptomised.json", "utf-8");
+// import {
+//   updateDocument,
+//   readDocument,
+//   newDocument,
+//   postDocument,
+// } from "./firestore.js";
 
 let allowedToPrint = true;
 function print(printThis) {
@@ -82,6 +85,7 @@ for (let i = 0; i < allCombinations.length; i++) {
       bid.costOfMoney = 0;
       bid.borrowAmount = 0;
     }
+    durationRunningTotal = bid.durationToDate;
   });
   //once all bids in iteration are processed, add the meta data
   allCombinations[i].unshift({
@@ -89,6 +93,7 @@ for (let i = 0; i < allCombinations.length; i++) {
     constructionCost: runTotal,
     interest: interestRunningTotal.toFixed(2),
     totalCost: Number(runTotal) + Number(interestRunningTotal.toFixed(2)),
+    totalDuration: durationRunningTotal,
   });
 
   count++;
