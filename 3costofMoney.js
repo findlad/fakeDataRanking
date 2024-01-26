@@ -19,8 +19,8 @@ function print(printThis) {
 
 console.log("A");
 
-let interestRate = 0.15;
-let freeMoney = 50000;
+const interestRate = 0.15;
+const freeMoney = 50000;
 let count = 0;
 
 console.log("B");
@@ -65,7 +65,7 @@ for (let i = 0; i < allCombinations.length; i++) {
       interestSinceLastBid =
         ((debtLevel * interestRate) / 365.25) * daysSinceLastBid;
       // console.log("interest since last bid: ", interestSinceLastBid);
-      interestRunningTotal = interestRunningTotal + interestSinceLastBid;
+      interestRunningTotal += interestSinceLastBid;
       // console.log("interest running total: ", interestRunningTotal);
       bid.costOfMoney = interestRunningTotal;
       //set new debt level for the analysis of the next bid
