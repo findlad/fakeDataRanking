@@ -20,7 +20,7 @@ console.log("b");
 let durationRunTotal = 0;
 function moveDatesForCWP(allComb) {
   allComb.forEach((iteration, index) => {
-    if (index !== 0) return; //use to only run once, for debugging
+    // if (index !== 0) return; //use to only run once, for debugging
     let CWPStart = new Date(startDay);
     CWPNumberArray.forEach((CWP) => {
       // console.log("project start date", CWPStart);
@@ -30,11 +30,11 @@ function moveDatesForCWP(allComb) {
       jobsInCWP.sort((a, b) => b.length - a.length);
       let CWPEnd;
       durationRunTotal += Number(jobsInCWP[0].length);
-      console.log(
-        "duration run total",
-        durationRunTotal,
-        typeof durationRunTotal
-      );
+      // console.log(
+      //   "duration run total",
+      //   durationRunTotal,
+      //   typeof durationRunTotal
+      // );
       jobsInCWP.forEach((bid) => {
         bid.durationToDate = Number(durationRunTotal);
         // console.log("current CWP ", bid.concurrentWP);

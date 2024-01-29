@@ -8,6 +8,7 @@ let workPackage1 = [
     endDate: "jan 20",
     length: 16,
     cost: 110000,
+    estimateAcuracy: 1,
     quote: true,
     ID: 54321,
   },
