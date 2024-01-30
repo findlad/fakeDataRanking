@@ -54,7 +54,7 @@ let workPackage1 = [
     vendor: "ericcson",
     uniform2: "abc",
     startDate: "jan 3",
-    endDate: "jan 18",
+    endDate: "jan 17",
     length: 16,
     cost: 95000,
     quote: false,

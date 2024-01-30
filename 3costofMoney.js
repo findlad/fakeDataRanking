@@ -26,9 +26,9 @@ let count = 0;
 console.log("B");
 
 for (let i = 0; i < allCombinations.length; i++) {
-  allCombinations[i] = allCombinations[i]
-    .filter((iter) => iter.concurrentWP > 0)
-    .sort((a, b) => new Date(a.endDate) - new Date(b.endDate));
+  allCombinations[i] = allCombinations[i];
+  // .filter((iter) => iter.concurrentWP > 0)
+  // .sort((a, b) => new Date(a.endDate) - new Date(b.endDate));
 
   //set variables for each iteration
   let dayOfMonthForInterest = 1;
