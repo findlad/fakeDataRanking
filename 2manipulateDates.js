@@ -17,8 +17,8 @@ allCombinations[0].forEach((bid) => {
 });
 console.log(CWPNumberArray);
 console.log("b");
-let durationRunTotal = 0;
 function moveDatesForCWP(allComb) {
+  let durationRunTotal = 0;
   allComb.forEach((iteration, index) => {
     if (index !== 0) return; //use to only run once, for debugging
     let CWPStart = new Date(startDay);
