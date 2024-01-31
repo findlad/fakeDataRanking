@@ -22,7 +22,7 @@ allCombinations[0].forEach((bid) => {
   if (CWPNumberArray.indexOf(bid.concurrentWP) === -1)
     CWPNumberArray.push(bid.concurrentWP);
 });
-console.log(CWPNumberArray);
+// console.log(CWPNumberArray);
 console.log("b");
 function moveDatesForCWP(allComb) {
   allComb.forEach((iteration, index) => {
@@ -59,7 +59,9 @@ function moveDatesForCWP(allComb) {
         //add the CWP start date to each bid
         bid.CWPStart = CWPStart;
         // console.log("CWP start date ", bid.CWPStart);
+        //subract 1 because these are inclusive. People work on the start day and the end day
         bid.endDate = addDaysToDate(CWPStart, bid.CWPLength);
+        // add one for the same reason we subtracted one
         bid.startDate = subtractDaysFromDate(bid.endDate, Number(bid.length));
         // console.log("altered Bid Start Date: ", bid.startDate);
         // console.log("altered Bid End Date: ", bid.endDate);
@@ -86,10 +88,10 @@ let moveDateSample = allCombinations.slice(0, 9);
 
 console.log("e");
 
-let moveDateJson = JSON.stringify(moveDateSample);
+// let moveDateJson = JSON.stringify(moveDateSample);
 
 console.log("f");
 
-fs.writeFileSync("moveDataz.json", moveDateJson, "utf-8");
+// fs.writeFileSync("moveDataz.json", moveDateJson, "utf-8");
 
 export { allCombinations, startDay };

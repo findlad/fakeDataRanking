@@ -1,5 +1,5 @@
 import fs from "fs";
-import msgpack from "msgpack-lite";
+
 import { allCombinations, startDay } from "./2manipulateDates.js";
 import {
   addDaysToDate,
@@ -30,7 +30,7 @@ let count = 0;
 console.log("B");
 
 allCombinations.forEach((iteration, index) => {
-  if (index !== 0) return; //use to only run once, for debugging
+  // if (index !== 0) return; //use to only run once, for debugging
 
   //set variables for each iteration
   let dayOfMonthForInterest = 1;
@@ -42,6 +42,14 @@ allCombinations.forEach((iteration, index) => {
   let debtStart = 0;
   let debtLevel = 0;
   let durationRunningTotal = 0;
+  iteration.allShouldBeZero =
+    runTotal === 0 &&
+    daysSinceLastBid === 0 &&
+    interestSinceLastBid === 0 &&
+    interestRunningTotal === 0 &&
+    debtLevel === 0 &&
+    durationRunningTotal === 0;
+
   //lastProcessDate initially set to the end date of first bid allCombinations[i] for testing iteration[0] for real
   let lastProcessDate = iteration.endDate;
 
@@ -50,6 +58,7 @@ allCombinations.forEach((iteration, index) => {
     runTotal += bid.cost;
     bid.runningTotal = runTotal;
     // console.log(bid.ID, "--------------");
+    // console.log("current bid cost ", bid.cost);
     // console.log("running total ", bid.runningTotal);
     //cost of money, we need to know interest rate, amount borrowed, and time its been borrowed
     //figure out time since last bid was processed
@@ -87,7 +96,7 @@ allCombinations.forEach((iteration, index) => {
     } else if (runTotal - freeMoney > 0) {
       //set up to calculate interest next time
       inDebt = true;
-      // debtStart = bid.endDate;
+      debtStart = bid.endDate;
       debtLevel = runTotal - freeMoney;
       bid.costOfMoney = 0;
       bid.borrowAmount = debtLevel;
@@ -100,7 +109,7 @@ allCombinations.forEach((iteration, index) => {
       //using free money
       bid.costOfMoney = 0;
       bid.borrowAmount = 0;
-      console.log("no debt");
+      // console.log("no debt");
     }
   });
   //once all bids in iteration are processed, add the meta data
@@ -131,16 +140,17 @@ console.log("E");
 let top100 = allCombinations.slice(0, 9);
 console.log("F");
 
-const stream = fs.createWriteStream("allCombIntz.json");
-const jsonStream = JSONStream.stringify();
-jsonStream.pipe(stream);
+//stream the output to file
+// const stream = fs.createWriteStream("allCombIntz.json");
+// const jsonStream = JSONStream.stringify();
+// jsonStream.pipe(stream);
 
-// Assuming allCombinations is an array
-allCombinations.forEach((combination) => {
-  jsonStream.write(combination);
-});
+// // Assuming allCombinations is an array
+// allCombinations.forEach((combination) => {
+//   jsonStream.write(combination);
+// });
 
-jsonStream.end();
+// jsonStream.end();
 
 console.log("G");
 
