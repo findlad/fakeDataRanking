@@ -55,7 +55,7 @@ let workPackage1 = [
     uniform2: "abc",
     startDate: "jan 3",
     endDate: "jan 17",
-    length: 16,
+    length: 15,
     cost: 95000,
     quote: false,
     ID: 54325,

@@ -12,6 +12,13 @@ function subtractDaysFromDate(dateInQuestion, daysForAdding) {
   var newDateObj = new Date(numberOfMlSeconds - addMlSeconds);
   return newDateObj;
 }
+function subtractDateFromDate(date1, date2) {
+  let MlSeconds1 = date1.getTime();
+  let MlSeconds2 = date2.getTime();
+  let daysDifference = (MlSeconds1 - MlSeconds2) / 86400000;
+
+  return daysDifference;
+}
 
 // Function to convert date string to JS Date object
 function convertToDate(dateString) {
@@ -28,4 +35,9 @@ function convertToDate(dateString) {
   return null; // Return null for invalid date strings
 }
 
-export { addDaysToDate, subtractDaysFromDate, convertToDate };
+export {
+  addDaysToDate,
+  subtractDaysFromDate,
+  convertToDate,
+  subtractDateFromDate,
+};
