@@ -1,15 +1,15 @@
 function addDaysToDate(dateInQuestion, daysForAdding) {
   let numberOfMlSeconds = dateInQuestion.getTime();
   // minus 1 because dates are inclusive, they work on the start and end dates
-  let addMlSeconds = (daysForAdding - 1) * 86400000;
+  let addMlSeconds = daysForAdding * 86400000;
   let newDateObj = new Date(numberOfMlSeconds + addMlSeconds);
   return newDateObj;
 }
 
 function subtractDaysFromDate(dateInQuestion, daysForSubtracting) {
   let numberOfMlSeconds = dateInQuestion.getTime();
-  // plus 1 because dates are inclusive, they work on the stary and end date
-  let addMlSeconds = (daysForSubtracting + 1) * 86400000;
+  // minus 1 because dates are inclusive, they work on the start and end date
+  let addMlSeconds = daysForSubtracting * 86400000;
   let newDateObj = new Date(numberOfMlSeconds - addMlSeconds);
   return newDateObj;
 }

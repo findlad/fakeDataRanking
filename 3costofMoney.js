@@ -42,13 +42,6 @@ allCombinations.forEach((iteration, index) => {
   let debtStart = 0;
   let debtLevel = 0;
   let durationRunningTotal = 0;
-  iteration.allShouldBeZero =
-    runTotal === 0 &&
-    daysSinceLastBid === 0 &&
-    interestSinceLastBid === 0 &&
-    interestRunningTotal === 0 &&
-    debtLevel === 0 &&
-    durationRunningTotal === 0;
 
   //lastProcessDate initially set to the end date of first bid allCombinations[i] for testing iteration[0] for real
   let lastProcessDate = iteration.endDate;
