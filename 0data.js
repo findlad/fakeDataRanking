@@ -155,11 +155,11 @@ let workPackage3 = [
 let workPackage4 = [
   {
     workPackage: 4,
-    concurrentWP: 2,
+    concurrentWP: 1,
     vendor: "amazon",
     uniform2: "abc",
-    startDate: "feb 6",
-    endDate: "feb 15",
+    startDate: "jan 6",
+    endDate: "jan 15",
     length: 9,
     cost: 110000,
     quote: true,
@@ -167,11 +167,11 @@ let workPackage4 = [
   },
   {
     workPackage: 4,
-    concurrentWP: 2,
+    concurrentWP: 1,
     vendor: "bloomberg",
     uniform2: "abc",
-    startDate: "feb 2",
-    endDate: "feb 14",
+    startDate: "jan 2",
+    endDate: "jan 14",
     length: 12,
     cost: 90000,
     quote: false,
@@ -179,11 +179,11 @@ let workPackage4 = [
   },
   {
     workPackage: 4,
-    concurrentWP: 2,
+    concurrentWP: 1,
     vendor: "coldgarden",
     uniform2: "abc",
-    startDate: "feb 5",
-    endDate: "feb 18",
+    startDate: "jan 5",
+    endDate: "jan 18",
     length: 13,
     cost: 100000,
     quote: true,
@@ -191,11 +191,11 @@ let workPackage4 = [
   },
   {
     workPackage: 4,
-    concurrentWP: 2,
+    concurrentWP: 1,
     vendor: "dennys",
     uniform2: "abc",
-    startDate: "feb 3",
-    endDate: "feb 16",
+    startDate: "jan 3",
+    endDate: "jan 16",
     length: 13,
     cost: 95000,
     quote: true,
@@ -637,7 +637,7 @@ function checkDurationMatchesDates(concurrentWP) {
   });
 }
 
-// checkDurationMatchesDates(concurrentWP1);
-// checkDurationMatchesDates(concurrentWP2);
-// checkDurationMatchesDates(concurrentWP3);
-// checkDurationMatchesDates(concurrentWP4);
+checkDurationMatchesDates(concurrentWP1);
+checkDurationMatchesDates(concurrentWP2);
+checkDurationMatchesDates(concurrentWP3);
+checkDurationMatchesDates(concurrentWP4);
