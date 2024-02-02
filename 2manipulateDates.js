@@ -4,9 +4,7 @@ import {
   convertToDate,
 } from "./timeAddFunctions.js";
 import fs from "fs";
-import { allCombinations } from "./1cartesianProduct.js";
-
-let startDay = "jan 01 2024";
+import { startDay, allCombinations } from "./1cartesianProduct.js";
 
 let allowedToPrint = true;
 function debug(printThis) {
@@ -22,7 +20,7 @@ allCombinations[0].forEach((bid) => {
   if (CWPNumberArray.indexOf(bid.concurrentWP) === -1)
     CWPNumberArray.push(bid.concurrentWP);
 });
-console.log(CWPNumberArray);
+// console.log(CWPNumberArray);
 
 console.log("b");
 
@@ -37,42 +35,40 @@ function moveDatesForCWP(allComb) {
       let jobsInCWP = iteration.filter((combo) => combo.concurrentWP === CWP);
       //sort the CWP so the longest job is first
       jobsInCWP.sort((a, b) => b.length - a.length);
-      let CWPEnd;
-      durationRunTotal += Number(jobsInCWP[0].length);
-      // console.log(
-      //   "duration run total",
-      //   durationRunTotal,
-      //   typeof durationRunTotal
-      // );
+      //figure out the length of the longest job
+      let CWPDuration = Number(jobsInCWP[0].length);
+      durationRunTotal += CWPDuration;
+      // console.log("duration run total", durationRunTotal);
+      //calculate the end date
+      let CWPEnd = addDaysToDate(CWPStart, CWPDuration);
+      //console.log('CWP end date ', CWPEnd)
       // console.log("------------------");
       jobsInCWP.forEach((bid) => {
         // console.log("current CWP ", bid.concurrentWP);
         // console.log("current WP ", bid.workPackage);
-        bid.durationToDate = Number(durationRunTotal);
+        bid.durationToDate = durationRunTotal;
         //convert start and end dates to date objects
         bid.startDate = convertToDate(bid.startDate);
         // console.log("Bid start date ", bid.startDate);
         bid.endDate = convertToDate(bid.endDate);
         // console.log("Bid end date ", bid.endDate);
         // console.log("current bid length: ", bid.length);
-        //figure out the length of the longest job
-        bid.CWPLength = Number(jobsInCWP[0].length);
+        bid.CWPLength = CWPDuration;
         // console.log("CWP length " + bid.CWPLength);
         //add the CWP start date to each bid
         bid.CWPStart = CWPStart;
         // console.log("CWP start date ", bid.CWPStart);
-        //subract 1 because these are inclusive. People work on the start day and the end day
-        bid.endDate = addDaysToDate(CWPStart, bid.CWPLength);
-        // add one for the same reason we subtracted one
-        bid.startDate = subtractDaysFromDate(bid.endDate, Number(bid.length));
-        // console.log("altered Bid Start Date: ", bid.startDate);
-        // console.log("altered Bid End Date: ", bid.endDate);
-        CWPEnd = addDaysToDate(CWPStart, Number(jobsInCWP[0].length));
+        // Subtract the bid duration from the End date to back calculate the start date
+        bid.newStartDate = subtractDaysFromDate(CWPEnd, Number(bid.length));
+        //calculate the end date for the bid, which will be the end date for the CWP
+        bid.newEndDate = CWPEnd;
+        // console.log("altered Bid Start Date: ", bid.newStartDate);
+        // console.log("altered Bid End Date: ", bid.newEndDate);
         // console.log("CWP END: ", CWPEnd);
         // console.log("------------------");
       });
       //reset date for next CWP
-      CWPStart = addDaysToDate(CWPEnd, 1);
+      CWPStart = CWPEnd;
       // console.log("updated CWP start date ", CWPStart);
     });
 

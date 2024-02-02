@@ -1,6 +1,8 @@
 import fs from "fs";
 
-import { allCombinations, startDay } from "./2manipulateDates.js";
+import { allCombinations } from "./2manipulateDates.js";
+
+import { startDay } from "./1cartesianProduct.js";
 import {
   addDaysToDate,
   subtractDaysFromDate,

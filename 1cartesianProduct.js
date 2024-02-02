@@ -6,6 +6,8 @@ import {
   // concurrentWP4,
 } from "./0data.js";
 
+let startDay = "jan 01 2024";
+
 // cartesian product
 const cartesian = (...a) =>
   a.reduce((a, b) => a.flatMap((d) => b.map((e) => [d, e].flat())));
@@ -31,4 +33,4 @@ let allcombSample = allCombinations.slice(0, 9);
 let sampleFile = JSON.stringify(allcombSample);
 fs.writeFileSync("cartesianSample.json", sampleFile, "utf-8");
 
-export { allCombinations };
+export { startDay, allCombinations };
