@@ -28,7 +28,7 @@ function generateCombinations(allJobs) {
 
 // Example usage:
 // Import the data
-import { allJobs } from "./data2.js";
+import { allJobs } from "../data2.js";
 
 // Call the function with your data
 const result = generateCombinations(allJobs);

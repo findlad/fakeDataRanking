@@ -16,13 +16,6 @@ import JSONStream from "JSONStream";
 //   postDocument,
 // } from "./firestore.js";
 
-let allowedToPrint = true;
-function print(printThis) {
-  if (allowedToPrint) {
-    console.log(printThis);
-  }
-}
-
 console.log("A");
 
 const interestRate = 0.15;
@@ -51,10 +44,10 @@ allCombinations.forEach((iteration, index) => {
   iteration.forEach((bid) => {
     //calculate construction cost as we go
     runTotal += bid.cost;
-    bid.runningTotal = runTotal;
-    // console.log(bid.ID, "--------------");
-    // console.log("current bid cost ", bid.cost);
-    // console.log("running total ", bid.runningTotal);
+    bid.runTotal = runTotal;
+    console.log(bid.ID, "--------------");
+    console.log("current bid cost ", bid.cost);
+    console.log("running total ", bid.runTotal);
     //cost of money, we need to know interest rate, amount borrowed, and time its been borrowed
     //figure out time since last bid was processed
     daysSinceLastBid = subtractDateFromDate(
@@ -64,7 +57,7 @@ allCombinations.forEach((iteration, index) => {
     if (isNaN(daysSinceLastBid)) {
       daysSinceLastBid = 0;
     }
-    // console.log("days since last bid: ", daysSinceLastBid);
+    console.log("days since last bid: ", daysSinceLastBid);
     //set lastprocessdate for the analysis of the next bid. This must update as we go along like running total
     lastProcessDate = bid.endDate;
     // console.log("last bid process date: ", lastProcessDate);
@@ -72,39 +65,39 @@ allCombinations.forEach((iteration, index) => {
     durationRunningTotal = Number(
       (bid.endDate - new Date(startDay)) / 86400000
     );
-    bid.daysIntoProject = durationRunningTotal;
-    // console.log("days into project: ", durationRunningTotal);
+    bid.durationRunningTotal = durationRunningTotal;
+    console.log("days into project: ", durationRunningTotal);
     //test to see if we need to spend the loan
     if (inDebt === true) {
       //using borrowed money: simple interest! Do we need compound? Loan structure compounds monthly
       interestSinceLastBid =
         ((debtLevel * interestRate) / 365.25) * daysSinceLastBid;
-      // console.log("interest since last bid: ", interestSinceLastBid);
+      console.log("interest since last bid: ", interestSinceLastBid);
       interestRunningTotal += interestSinceLastBid;
-      // console.log("interest running total: ", interestRunningTotal);
-      bid.costOfMoney = interestRunningTotal;
+      console.log("interest running total: ", interestRunningTotal);
+      bid.interestRunningTotal = interestRunningTotal;
       //set new debt level for the analysis of the next bid
       debtLevel = runTotal - freeMoney;
-      // console.log("debt level: ", debtLevel, typeof debtLevel);
+      console.log("debt level: ", debtLevel, typeof debtLevel);
       //haven`t paid any interest yet! only just borrowed it
-      bid.borrowAmount = debtLevel;
+      bid.debtLevel = debtLevel;
     } else if (runTotal - freeMoney > 0) {
       //set up to calculate interest next time
       inDebt = true;
       debtStart = bid.endDate;
       debtLevel = runTotal - freeMoney;
       bid.costOfMoney = 0;
-      bid.borrowAmount = debtLevel;
+      bid.debtLevel = debtLevel;
 
-      // console.log(
-      //   "in debt, will charge interest next time. debt level: ",
-      //   debtLevel
-      // );
+      console.log(
+        "in debt, will charge interest next time. debt level: ",
+        debtLevel
+      );
     } else {
       //using free money
       bid.costOfMoney = 0;
       bid.borrowAmount = 0;
-      // console.log("no debt");
+      console.log("no debt");
     }
   });
   //once all bids in iteration are processed, add the meta data
@@ -114,14 +107,16 @@ allCombinations.forEach((iteration, index) => {
     interest: interestRunningTotal.toFixed(2),
     totalCost: Number(runTotal) + Number(interestRunningTotal.toFixed(2)),
     totalDuration: durationRunningTotal,
+    debtStart: debtStart,
   });
-  // console.log("construction cost ", runTotal);
-  // console.log(
-  //   "total cost ",
-  //   Number(runTotal) + Number(interestRunningTotal.toFixed(2))
-  // );
-  // console.log("total interest ", interestRunningTotal);
-  // console.log("total duration ", durationRunningTotal);
+  console.log("construction cost ", runTotal);
+  console.log(
+    "total cost ",
+    Number(runTotal) + Number(interestRunningTotal.toFixed(2))
+  );
+  console.log("total interest ", interestRunningTotal);
+  console.log("total duration ", durationRunningTotal);
+  console.log("In debt since ", debtStart);
   count++;
 });
 

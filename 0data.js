@@ -539,8 +539,8 @@ let workPackage11 = [
     concurrentWP: 4,
     vendor: "coldgarden",
     uniform2: "abc",
-    startDate: "apr 1",
-    endDate: "apr 14",
+    startDate: "apr 2",
+    endDate: "apr 15",
     length: 13,
     cost: 120000,
     quote: true,
@@ -586,7 +586,7 @@ let workPackage12 = [
     ID: 54366,
   },
   {
-    workPackage: 12,
+    workPackage: 1,
     concurrentWP: 4,
     vendor: "coldgarden",
     uniform2: "abc",
@@ -618,26 +618,26 @@ let concurrentWP4 = [workPackage10, workPackage11, workPackage12];
 
 export { concurrentWP1, concurrentWP2, concurrentWP3 };
 
-function checkDurationMatchesDates(concurrentWP) {
-  concurrentWP.forEach((workPackages, index) => {
-    workPackages.forEach((wp) => {
-      const startDate = new Date(wp.startDate);
-      const endDate = new Date(wp.endDate);
-      const calculatedDuration = (endDate - startDate) / (1000 * 60 * 60 * 24); // Duration in days
+// function checkDurationMatchesDates(concurrentWP) {
+//   concurrentWP.forEach((workPackages, index) => {
+//     workPackages.forEach((wp) => {
+//       const startDate = new Date(wp.startDate);
+//       const endDate = new Date(wp.endDate);
+//       const calculatedDuration = (endDate - startDate) / (1000 * 60 * 60 * 24); // Duration in days
 
-      if (calculatedDuration !== wp.length) {
-        console.log(
-          `Mismatch found in concurrentWP[${index}] - workPackage ${wp.workPackage}, ID ${wp.ID}`
-        );
-        console.log(
-          `Expected duration: ${wp.length} days, Calculated duration: ${calculatedDuration} days`
-        );
-      }
-    });
-  });
-}
+//       if (calculatedDuration !== wp.length) {
+//         console.log(
+//           `Mismatch found in concurrentWP[${index}] - workPackage ${wp.workPackage}, ID ${wp.ID}`
+//         );
+//         console.log(
+//           `Expected duration: ${wp.length} days, Calculated duration: ${calculatedDuration} days`
+//         );
+//       }
+//     });
+//   });
+// }
 
-checkDurationMatchesDates(concurrentWP1);
-checkDurationMatchesDates(concurrentWP2);
-checkDurationMatchesDates(concurrentWP3);
-checkDurationMatchesDates(concurrentWP4);
+// checkDurationMatchesDates(concurrentWP1);
+// checkDurationMatchesDates(concurrentWP2);
+// checkDurationMatchesDates(concurrentWP3);
+// checkDurationMatchesDates(concurrentWP4);
