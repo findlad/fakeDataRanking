@@ -131,6 +131,18 @@ let workPackage9 = [
     quote: false,
     ID: 54354,
   },
+  {
+    workPackage: 9,
+    concurrentWP: 3,
+    vendor: "dennys",
+    uniform2: "abc",
+    startDate: "mar 3",
+    endDate: "mar 16",
+    length: 13,
+    cost: 95000,
+    quote: true,
+    ID: 54356,
+  },
 ];
 
 let workPackage10 = [

@@ -1,3 +1,6 @@
+// get rid of the console.logs
+console.log = function () {};
+
 import {
   addDaysToDate,
   subtractDaysFromDate,
@@ -5,13 +8,12 @@ import {
 } from "./timeAddFunctions.js";
 import fs from "fs";
 import { startDay, allCombinations } from "./1cartesianProduct.js";
-console.log(startDay);
+
+// console.log(startDay);
+
 function filterCWPs(iteration, CWP) {
-  // console.log(Array.isArray(iteration));
   return iteration.filter((combo) => combo.concurrentWP === CWP);
 }
-// get rid of the console.logs
-// console.log = function () {};
 
 // console.log("a");
 //document all CWP in dataset
@@ -20,14 +22,15 @@ allCombinations[0].forEach((bid) => {
   if (CWPNumberArray.indexOf(bid.concurrentWP) === -1)
     CWPNumberArray.push(bid.concurrentWP);
 });
-// console.log(CWPNumberArray);
+console.log(CWPNumberArray);
 
 // console.log("b");
 
 function moveDatesForCWP(allComb) {
   allComb.forEach((iteration, index) => {
-    if (index !== 0) return; //use to only run once, for debugging
+    // if (index !== 0) return; //use to only run once, for debugging
     let CWPStart = new Date(startDay);
+    console.log("CWP Start : ", CWPStart);
     let durationRunTotal = 0;
 
     CWPNumberArray.forEach((CWP) => {
@@ -46,6 +49,7 @@ function moveDatesForCWP(allComb) {
       console.log("CWP end date ", CWPEnd);
       console.log("------------------");
       jobsInCWP.forEach((bid) => {
+        console.log("bid ID ", bid.ID);
         console.log("current CWP ", bid.concurrentWP);
         console.log("current WP ", bid.workPackage);
         bid.durationToDate = durationRunTotal;
@@ -73,7 +77,7 @@ function moveDatesForCWP(allComb) {
       CWPStart = CWPEnd;
       console.log("updated CWP start date ", CWPStart);
     });
-
+    //is this messing it up?
     iteration.sort((a, b) => a.workPackage - b.workPackage);
   });
 }
@@ -94,5 +98,14 @@ moveDatesForCWP(allCombinations);
 // console.log("f");
 
 // fs.writeFileSync("moveDataz.json", moveDateJson, "utf-8");
-
+console.log(
+  "1st job end date ",
+  allCombinations[0][0].ID,
+  allCombinations[0][0].newEndDate
+);
+console.log(
+  "2nd job end date ",
+  allCombinations[0][1].ID,
+  allCombinations[0][1].newEndDate
+);
 export { allCombinations, filterCWPs };

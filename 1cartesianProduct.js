@@ -1,20 +1,25 @@
 import fs from "fs";
-// import {
-//   concurrentWP1,
-//   concurrentWP2,
-//   concurrentWP3,
-//   // concurrentWP4,
-// } from "./0data.js";
+//use for real
 import {
   concurrentWP1,
   concurrentWP2,
   concurrentWP3,
   // concurrentWP4,
-} from "./testData.js";
+} from "./0data.js";
+
+// use for testing
+// import {
+//   concurrentWP1,
+//   concurrentWP2,
+//   concurrentWP3,
+//   // concurrentWP4,
+// } from "./testData.js";
 
 let startDay = "jan 01 2024";
+startDay = new Date(startDay);
 
 // cartesian product
+
 const cartesian = (...a) =>
   a.reduce((a, b) => a.flatMap((d) => b.map((e) => [d, e].flat())));
 
@@ -33,8 +38,8 @@ let allCombinations = cartesian(
   // concurrentWP4Comb
 );
 
-// let allcombSample = allCombinations.slice(0, 9);
-// let sampleFile = JSON.stringify(allcombSample);
-// fs.writeFileSync("cartesianSample.json", sampleFile, "utf-8");
+let allcombSample = allCombinations[242789];
+let sampleFile = JSON.stringify(allcombSample);
+fs.writeFileSync("cartesianSample.json", sampleFile, "utf-8");
 
 export { startDay, allCombinations };

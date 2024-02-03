@@ -37,9 +37,10 @@ allCombinations.forEach((iteration, index) => {
   let debtStart = 0;
   let debtLevel = 0;
   let durationRunningTotal = 0;
+  let start = new Date(startDay);
 
   //lastProcessDate initially set to the end date of first bid allCombinations[i] for testing iteration[0] for real
-  let lastProcessDate = iteration.endDate;
+  let lastProcessDate = iteration.newEndDate;
 
   iteration.forEach((bid) => {
     //calculate construction cost as we go
@@ -51,7 +52,7 @@ allCombinations.forEach((iteration, index) => {
     //cost of money, we need to know interest rate, amount borrowed, and time its been borrowed
     //figure out time since last bid was processed
     daysSinceLastBid = subtractDateFromDate(
-      new Date(bid.endDate),
+      new Date(bid.newEndDate),
       new Date(lastProcessDate)
     );
     if (isNaN(daysSinceLastBid)) {
@@ -59,14 +60,14 @@ allCombinations.forEach((iteration, index) => {
     }
     console.log("days since last bid: ", daysSinceLastBid);
     //set lastprocessdate for the analysis of the next bid. This must update as we go along like running total
-    lastProcessDate = bid.endDate;
+    lastProcessDate = bid.newEndDate;
     // console.log("last bid process date: ", lastProcessDate);
     //figure out how far we are into the project
-    durationRunningTotal = Number(
-      (bid.endDate - new Date(startDay)) / 86400000
-    );
+    console.log("bid end ", bid.newEndDate);
+    console.log("start ", start);
+    durationRunningTotal = subtractDateFromDate(bid.newEndDate, start);
     bid.durationRunningTotal = durationRunningTotal;
-    console.log("days into project: ", durationRunningTotal);
+    console.log("duration running total: ", durationRunningTotal);
     //test to see if we need to spend the loan
     if (inDebt === true) {
       //using borrowed money: simple interest! Do we need compound? Loan structure compounds monthly
@@ -84,7 +85,7 @@ allCombinations.forEach((iteration, index) => {
     } else if (runTotal - freeMoney > 0) {
       //set up to calculate interest next time
       inDebt = true;
-      debtStart = bid.endDate;
+      debtStart = bid.newEndDate;
       debtLevel = runTotal - freeMoney;
       bid.costOfMoney = 0;
       bid.debtLevel = debtLevel;
