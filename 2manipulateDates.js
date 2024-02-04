@@ -1,5 +1,5 @@
 // get rid of the console.logs
-console.log = function () {};
+// console.log = function () {};
 
 import {
   addDaysToDate,
@@ -28,7 +28,7 @@ console.log(CWPNumberArray);
 
 function moveDatesForCWP(allComb) {
   allComb.forEach((iteration, index) => {
-    // if (index !== 0) return; //use to only run once, for debugging
+    if (index !== 0) return; //use to only run once, for debugging
     let CWPStart = new Date(startDay);
     console.log("CWP Start : ", CWPStart);
     let durationRunTotal = 0;
@@ -37,11 +37,13 @@ function moveDatesForCWP(allComb) {
       console.log("project start date", CWPStart);
       //filter on each CWP
       let jobsInCWP = filterCWPs(iteration, CWP);
-
+      console.log(jobsInCWP);
       //sort the CWP so the longest job is first
       jobsInCWP.sort((a, b) => b.length - a.length);
+      console.log(jobsInCWP);
       //figure out the length of the longest job
       let CWPDuration = Number(jobsInCWP[0].length);
+      console.log(CWPDuration);
       durationRunTotal += CWPDuration;
       console.log("duration run total", durationRunTotal);
       //calculate the end date
