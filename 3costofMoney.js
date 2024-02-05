@@ -3,18 +3,9 @@ import fs from "fs";
 import { allCombinations } from "./2manipulateDates.js";
 
 import { startDay } from "./1cartesianProduct.js";
-import {
-  addDaysToDate,
-  subtractDaysFromDate,
-  subtractDateFromDate,
-} from "./timeAddFunctions.js";
+import { subtractDateFromDate } from "./timeAddFunctions.js";
+
 import JSONStream from "JSONStream";
-// import {
-//   updateDocument,
-//   readDocument,
-//   newDocument,
-//   postDocument,
-// } from "./firestore.js";
 
 console.log("A");
 
@@ -39,7 +30,7 @@ allCombinations.forEach((iteration, index) => {
   let durationRunningTotal = 0;
   let start = new Date(startDay);
 
-  //lastProcessDate initially set to the end date of first bid allCombinations[i] for testing iteration[0] for real
+  //what am i thinking here?
   let lastProcessDate = iteration.newEndDate;
 
   iteration.forEach((bid) => {
@@ -72,7 +63,7 @@ allCombinations.forEach((iteration, index) => {
     if (inDebt === true) {
       //using borrowed money: simple interest! Do we need compound? Loan structure compounds monthly
       interestSinceLastBid =
-        ((debtLevel * interestRate) / 365.25) * daysSinceLastBid;
+        ((debtLevel * interestRate) / 365) * daysSinceLastBid;
       console.log("interest since last bid: ", interestSinceLastBid);
       interestRunningTotal += interestSinceLastBid;
       console.log("interest running total: ", interestRunningTotal);

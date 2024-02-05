@@ -1,5 +1,7 @@
+const debug = (...args) => console.log(...args);
+
 // get rid of the console.logs
-// console.log = function () {};
+console.log = function () {};
 
 import {
   addDaysToDate,
@@ -23,91 +25,84 @@ allCombinations[0].forEach((bid) => {
     CWPNumberArray.push(bid.concurrentWP);
 });
 console.log(CWPNumberArray);
-
+let processedAllComb = [];
 // console.log("b");
 
 function moveDatesForCWP(allComb) {
-  allComb.forEach((iteration, index) => {
-    if (index !== 0) return; //use to only run once, for debugging
+  allComb.forEach((original, index) => {
+    // if (index !== 0) return; //use to only run once, for debugging
+    // check if theres a split bid in this iteration, if so, dont run
+    //let run=true
+    //let noOfTiedBids=0
+    //for each bid, if tiedBidFlag=true, noOfTiedBide +=1,
+    const iteration = JSON.parse(JSON.stringify(original));
+
     let CWPStart = new Date(startDay);
-    console.log("CWP Start : ", CWPStart);
+    // console.log("CWP Start : ", CWPStart);
     let durationRunTotal = 0;
 
     CWPNumberArray.forEach((CWP) => {
-      console.log("project start date", CWPStart);
+      // console.log("project start date", CWPStart);
       //filter on each CWP
       let jobsInCWP = filterCWPs(iteration, CWP);
-      console.log(jobsInCWP);
+      // console.log(jobsInCWP);
       //sort the CWP so the longest job is first
       jobsInCWP.sort((a, b) => b.length - a.length);
-      console.log(jobsInCWP);
+      // console.log(jobsInCWP);
       //figure out the length of the longest job
       let CWPDuration = Number(jobsInCWP[0].length);
-      console.log(CWPDuration);
+      // if (CWPDuration === 13) {
+      //   debug("cwp np ", CWP);
+      //   debug("jobs on CWP ", jobsInCWP);
+      //   process.exit();
+      // }
+      // console.log(CWPDuration);
       durationRunTotal += CWPDuration;
-      console.log("duration run total", durationRunTotal);
+      // console.log("duration run total", durationRunTotal);
       //calculate the end date
       let CWPEnd = addDaysToDate(CWPStart, CWPDuration);
-      console.log("CWP end date ", CWPEnd);
-      console.log("------------------");
+      // console.log("CWP end date ", CWPEnd);
+      // console.log("------------------");
       jobsInCWP.forEach((bid) => {
-        console.log("bid ID ", bid.ID);
-        console.log("current CWP ", bid.concurrentWP);
-        console.log("current WP ", bid.workPackage);
+        // console.log("bid ID ", bid.ID);
+        // console.log("current CWP ", bid.concurrentWP);
+        // console.log("current WP ", bid.workPackage);
         bid.durationToDate = durationRunTotal;
         //convert start and end dates to date objects
         bid.startDate = convertToDate(bid.startDate);
-        console.log("Bid start date ", bid.startDate);
+        // console.log("Bid start date ", bid.startDate);
         bid.endDate = convertToDate(bid.endDate);
-        console.log("Bid end date ", bid.endDate);
-        console.log("current bid length: ", bid.length);
-        bid.CWPLength = CWPDuration;
-        console.log("CWP length " + bid.CWPLength);
+        // console.log("Bid end date ", bid.endDate);
+        // console.log("current bid length: ", bid.length);
+        bid.CWPDuration = CWPDuration;
+        // console.log("CWP length " + bid.CWPLength);
         //add the CWP start date to each bid
         bid.CWPStart = CWPStart;
-        console.log("CWP start date ", bid.CWPStart);
-        // Subtract the bid duration from the End date to back calculate the start date
-        bid.newStartDate = subtractDaysFromDate(CWPEnd, Number(bid.length));
+        // console.log("CWP start date ", bid.CWPStart);
         //calculate the end date for the bid, which will be the end date for the CWP
         bid.newEndDate = CWPEnd;
-        console.log("altered Bid Start Date: ", bid.newStartDate);
-        console.log("altered Bid End Date: ", bid.newEndDate);
-        console.log("CWP END: ", CWPEnd);
-        console.log("------------------");
+        // Subtract the bid duration from the End date to back calculate the start date
+        bid.newStartDate = subtractDaysFromDate(CWPEnd, Number(bid.length));
+        // console.log("altered Bid Start Date: ", bid.newStartDate);
+        // console.log("altered Bid End Date: ", bid.newEndDate);
+        // console.log("CWP END: ", CWPEnd);
+        // console.log("------------------");
       });
       //reset date for next CWP
       CWPStart = CWPEnd;
-      console.log("updated CWP start date ", CWPStart);
+      // console.log("updated CWP start date ", CWPStart);
     });
-    //is this messing it up?
+
     iteration.sort((a, b) => a.workPackage - b.workPackage);
+    processedAllComb.push(iteration);
   });
 }
 
-// console.log("c");
-
 moveDatesForCWP(allCombinations);
-// moveDatesForCWP(exportTest);
-// console.log(exportTest);
-// console.log("d");
 
-// let moveDateSample = allCombinations.slice(0, 9);
-
-// console.log("e");
+// let moveDateSample = processedAllComb.slice(0, 9);
 
 // let moveDateJson = JSON.stringify(moveDateSample);
 
-// console.log("f");
-
 // fs.writeFileSync("moveDataz.json", moveDateJson, "utf-8");
-console.log(
-  "1st job end date ",
-  allCombinations[0][0].ID,
-  allCombinations[0][0].newEndDate
-);
-console.log(
-  "2nd job end date ",
-  allCombinations[0][1].ID,
-  allCombinations[0][1].newEndDate
-);
-export { allCombinations, filterCWPs };
+export { processedAllComb as allCombinations, filterCWPs };

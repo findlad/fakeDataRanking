@@ -1,19 +1,19 @@
 import fs from "fs";
-//use for real
-// import {
-//   concurrentWP1,
-//   concurrentWP2,
-//   concurrentWP3,
-//   // concurrentWP4,
-// } from "./0data.js";
-
-// use for testing
+// use for real
 import {
   concurrentWP1,
   concurrentWP2,
   concurrentWP3,
   // concurrentWP4,
-} from "./testData.js";
+} from "./0data.js";
+
+// use for testing
+// import {
+//   concurrentWP1,
+//   concurrentWP2,
+//   concurrentWP3,
+//   // concurrentWP4,
+// } from "./testData.js";
 
 let startDay = "jan 01 2024";
 startDay = new Date(startDay);
@@ -38,10 +38,10 @@ let allCombinations = cartesian(
   // concurrentWP4Comb
 );
 
-// let allcombSample = allCombinations[242789];
+let allcombSample = allCombinations[242789];
 // let previousComb = allCombinations[242788];
-// let sampleFile = JSON.stringify(allcombSample);
+let sampleFile = JSON.stringify(allcombSample);
 // let sampleFile1 = JSON.stringify(previousComb);
-// fs.writeFileSync("cartesianSample.json", sampleFile, "utf-8");
+fs.writeFileSync("cartesianSample.json", sampleFile, "utf-8");
 // fs.writeFileSync("cartesianSample1.json", sampleFile1, "utf-8");
 export { startDay, allCombinations };

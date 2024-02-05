@@ -122,6 +122,18 @@ let workPackage9 = [
   {
     workPackage: 9,
     concurrentWP: 3,
+    vendor: "bloomberg",
+    uniform2: "abc",
+    startDate: "mar 2",
+    endDate: "mar 14",
+    length: 12,
+    cost: 90000,
+    quote: false,
+    ID: 54354,
+  },
+  {
+    workPackage: 9,
+    concurrentWP: 3,
     vendor: "coldgarden",
     uniform2: "abc",
     startDate: "mar 5",
