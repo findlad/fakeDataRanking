@@ -35,6 +35,10 @@ allCombinations.forEach((iteration, index) => {
 
   iteration.forEach((bid) => {
     //calculate construction cost as we go
+    if (bid.quote === false) {
+      bid.oldCost = bid.cost;
+      bid.cost = bid.cost * bid.estimateAcuracy;
+    }
     runTotal += bid.cost;
     bid.runTotal = runTotal;
     console.log(bid.ID, "--------------");
@@ -61,9 +65,13 @@ allCombinations.forEach((iteration, index) => {
     console.log("duration running total: ", durationRunningTotal);
     //test to see if we need to spend the loan
     if (inDebt === true) {
-      //using borrowed money: simple interest! Do we need compound? Loan structure compounds monthly
+      //using borrowed money: simple interest!
+      // interestSinceLastBid =
+      //   ((debtLevel * interestRate) / 365) * daysSinceLastBid;
+      //using borrowed money: compound interest!
       interestSinceLastBid =
-        ((debtLevel * interestRate) / 365) * daysSinceLastBid;
+        debtLevel * Math.pow(1 + interestRate / 365, daysSinceLastBid) -
+        debtLevel;
       console.log("interest since last bid: ", interestSinceLastBid);
       interestRunningTotal += interestSinceLastBid;
       console.log("interest running total: ", interestRunningTotal);
