@@ -64,36 +64,39 @@ function moveDatesForCWP(allComb) {
       // console.log("CWP end date ", CWPEnd);
       // console.log("------------------");
       jobsInCWP.forEach((bid) => {
-        // console.log("bid ID ", bid.ID);
-        // console.log("current CWP ", bid.concurrentWP);
-        // console.log("current WP ", bid.workPackage);
         bid.durationToDate = durationRunTotal;
         //convert start and end dates to date objects
         bid.startDate = convertToDate(bid.startDate);
-        // console.log("Bid start date ", bid.startDate);
+
         bid.endDate = convertToDate(bid.endDate);
-        // console.log("Bid end date ", bid.endDate);
-        // console.log("current bid length: ", bid.length);
+
         bid.CWPDuration = CWPDuration;
-        // console.log("CWP length " + bid.CWPLength);
+
         //add the CWP start date to each bid
         bid.CWPStart = CWPStart;
-        // console.log("CWP start date ", bid.CWPStart);
-        //calculate the end date for the bid, which will be the end date for the CWP
-        bid.newEndDate = CWPEnd;
-        // Subtract the bid duration from the End date to back calculate the start date
-        bid.newStartDate = subtractDaysFromDate(CWPEnd, Number(bid.length));
-        // console.log("altered Bid Start Date: ", bid.newStartDate);
-        // console.log("altered Bid End Date: ", bid.newEndDate);
-        // console.log("CWP END: ", CWPEnd);
-        // console.log("------------------");
+        if (bid.type === "install") {
+          //bid is for install
+          //calculate the end date for the bid, which will be the end date for the CWP
+          bid.newEndDate = CWPEnd;
+          // Subtract the bid duration from the End date to back calculate the start date
+          bid.newStartDate = subtractDaysFromDate(CWPEnd, Number(bid.length));
+        } else {
+          //bid is for delivery
+          //calculate the end date, which is the start of the CWP
+          bid.newEndDate = CWPStart;
+          //calculate start date which is end date minus bid length
+          bid.newStartDate = subtractDaysFromDate(
+            bid.newEndDate,
+            number(bid.length)
+          );
+        }
       });
       //reset date for next CWP
       CWPStart = CWPEnd;
       // console.log("updated CWP start date ", CWPStart);
     });
 
-    iteration.sort((a, b) => a.workPackage - b.workPackage);
+    iteration.sort((a, b) => a.newStartDate - b.newStartDate);
     processedAllComb.push(iteration);
   });
 }

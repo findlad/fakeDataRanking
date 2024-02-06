@@ -10,6 +10,7 @@ let workPackage1 = [
     cost: 110000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54321,
   },
   {
@@ -23,6 +24,7 @@ let workPackage1 = [
     cost: 80000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54322,
   },
   {
@@ -36,6 +38,7 @@ let workPackage1 = [
     cost: 130000,
     estimateAcuracy: 1.2,
     quote: false,
+    type: "install",
     ID: 54323,
   },
   {
@@ -49,6 +52,7 @@ let workPackage1 = [
     cost: 90000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54324,
   },
   {
@@ -62,6 +66,7 @@ let workPackage1 = [
     cost: 5000,
     estimateAcuracy: 1.2,
     quote: false,
+    type: "install",
     ID: 54325,
   },
 ];
@@ -77,6 +82,7 @@ let workPackage2 = [
     length: 10,
     cost: 75000,
     quote: true,
+    type: "delivery",
     ID: 54326,
   },
   {
@@ -90,6 +96,7 @@ let workPackage2 = [
     cost: 110000,
     estimateAcuracy: 1,
     quote: true,
+    type: "delivery",
     ID: 54327,
   },
   {
@@ -103,6 +110,7 @@ let workPackage2 = [
     cost: 10000,
     estimateAcuracy: 1.2,
     quote: false,
+    type: "delivery",
     ID: 54328,
   },
 ];
@@ -119,6 +127,7 @@ let workPackage3 = [
     cost: 120000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54329,
   },
   {
@@ -132,6 +141,7 @@ let workPackage3 = [
     cost: 85000,
     estimateAcuracy: 1.2,
     quote: false,
+    type: "install",
     ID: 54330,
   },
   {
@@ -145,6 +155,7 @@ let workPackage3 = [
     cost: 120000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54331,
   },
   {
@@ -158,6 +169,7 @@ let workPackage3 = [
     cost: 12000,
     estimateAcuracy: 1.2,
     quote: false,
+    type: "install",
     ID: 54332,
   },
 ];
@@ -174,6 +186,7 @@ let workPackage4 = [
     cost: 110000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54333,
   },
   {
@@ -187,6 +200,7 @@ let workPackage4 = [
     cost: 90000,
     estimateAcuracy: 1.2,
     quote: false,
+    type: "install",
     ID: 54334,
   },
   {
@@ -200,6 +214,7 @@ let workPackage4 = [
     cost: 100000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54335,
   },
   {
@@ -213,6 +228,7 @@ let workPackage4 = [
     cost: 95000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54336,
   },
 ];
@@ -229,6 +245,7 @@ let workPackage5 = [
     cost: 80000,
     estimateAcuracy: 1.15,
     quote: false,
+    type: "delivery",
     ID: 54337,
   },
   {
@@ -242,6 +259,7 @@ let workPackage5 = [
     cost: 130000,
     estimateAcuracy: 1,
     quote: true,
+    type: "delivery",
     ID: 54338,
   },
   {
@@ -255,6 +273,7 @@ let workPackage5 = [
     cost: 110000,
     estimateAcuracy: 1.5,
     quote: false,
+    type: "delivery",
     ID: 54339,
   },
   {
@@ -268,6 +287,7 @@ let workPackage5 = [
     cost: 95000,
     estimateAcuracy: 1,
     quote: true,
+    type: "delivery",
     ID: 54340,
   },
 ];
@@ -284,6 +304,7 @@ let workPackage6 = [
     cost: 105000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54341,
   },
   {
@@ -297,6 +318,7 @@ let workPackage6 = [
     cost: 88000,
     estimateAcuracy: 1.05,
     quote: false,
+    type: "install",
     ID: 54342,
   },
   {
@@ -310,6 +332,7 @@ let workPackage6 = [
     cost: 120000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54343,
   },
   {
@@ -323,6 +346,7 @@ let workPackage6 = [
     cost: 100000,
     estimateAcuracy: 1,
     quote: false,
+    type: "install",
     ID: 54344,
   },
 ];
@@ -339,6 +363,7 @@ let workPackage7 = [
     cost: 95000,
     estimateAcuracy: 1,
     quote: true,
+    type: "delivery",
     ID: 54345,
   },
   {
@@ -352,6 +377,7 @@ let workPackage7 = [
     cost: 110000,
     estimateAcuracy: 1.05,
     quote: false,
+    type: "delivery",
     ID: 54346,
   },
   {
@@ -365,6 +391,7 @@ let workPackage7 = [
     cost: 80000,
     estimateAcuracy: 1.2,
     quote: true,
+    type: "delivery",
     ID: 54347,
   },
   {
@@ -378,6 +405,7 @@ let workPackage7 = [
     cost: 120000,
     estimateAcuracy: 1.15,
     quote: false,
+    type: "delivery",
     ID: 54348,
   },
 ];
@@ -394,6 +422,7 @@ let workPackage8 = [
     cost: 100000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54349,
   },
   {
@@ -407,6 +436,7 @@ let workPackage8 = [
     cost: 85000,
     estimateAcuracy: 1.1,
     quote: false,
+    type: "install",
     ID: 54350,
   },
   {
@@ -420,6 +450,7 @@ let workPackage8 = [
     cost: 110000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54351,
   },
   {
@@ -433,6 +464,7 @@ let workPackage8 = [
     cost: 95000,
     estimateAcuracy: 1.25,
     quote: false,
+    type: "install",
     ID: 54352,
   },
 ];
@@ -449,6 +481,7 @@ let workPackage9 = [
     cost: 130000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54353,
   },
   {
@@ -462,6 +495,7 @@ let workPackage9 = [
     cost: 90000,
     estimateAcuracy: 1.1,
     quote: false,
+    type: "install",
     ID: 54354,
   },
   {
@@ -475,6 +509,7 @@ let workPackage9 = [
     cost: 100000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54355,
   },
   {
@@ -488,6 +523,7 @@ let workPackage9 = [
     cost: 95000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54356,
   },
 ];
@@ -504,6 +540,7 @@ let workPackage10 = [
     cost: 80000,
     estimateAcuracy: 1.2,
     quote: false,
+    type: "install",
     ID: 54357,
   },
   {
@@ -517,6 +554,7 @@ let workPackage10 = [
     cost: 130000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54358,
   },
   {
@@ -530,6 +568,7 @@ let workPackage10 = [
     cost: 110000,
     estimateAcuracy: 1.15,
     quote: false,
+    type: "install",
     ID: 54359,
   },
   {
@@ -543,6 +582,7 @@ let workPackage10 = [
     cost: 95000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54360,
   },
 ];
@@ -559,6 +599,7 @@ let workPackage11 = [
     cost: 105000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54361,
   },
   {
@@ -572,6 +613,7 @@ let workPackage11 = [
     cost: 88000,
     estimateAcuracy: 1.5,
     quote: false,
+    type: "install",
     ID: 54362,
   },
   {
@@ -585,6 +627,7 @@ let workPackage11 = [
     cost: 120000,
     estimateAcuracy: 1,
     quote: true,
+    type: "install",
     ID: 54363,
   },
   {
@@ -598,6 +641,7 @@ let workPackage11 = [
     cost: 100000,
     estimateAcuracy: 1.05,
     quote: false,
+    type: "install",
     ID: 54364,
   },
 ];
@@ -614,6 +658,7 @@ let workPackage12 = [
     cost: 95000,
     estimateAcuracy: 1,
     quote: true,
+    type: "delivery",
     ID: 54365,
   },
   {
@@ -627,10 +672,11 @@ let workPackage12 = [
     cost: 110000,
     estimateAcuracy: 1.15,
     quote: false,
+    type: "delivery",
     ID: 54366,
   },
   {
-    workPackage: 1,
+    workPackage: 12,
     concurrentWP: 4,
     vendor: "coldgarden",
     uniform2: "abc",
@@ -640,6 +686,7 @@ let workPackage12 = [
     cost: 80000,
     estimateAcuracy: 1,
     quote: true,
+    type: "delivery",
     ID: 54367,
   },
   {
@@ -653,6 +700,7 @@ let workPackage12 = [
     cost: 120000,
     estimateAcuracy: 1.15,
     quote: false,
+    type: "delivery",
     ID: 54368,
   },
 ];

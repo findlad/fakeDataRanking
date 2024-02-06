@@ -7,13 +7,32 @@ import { subtractDateFromDate } from "./timeAddFunctions.js";
 
 import JSONStream from "JSONStream";
 
-console.log("A");
-
 const interestRate = 0.15;
 const freeMoney = 150000;
 let count = 0;
+let noOfCompoundsPerYear = 365;
 
-console.log("B");
+function calculateInterest(multiplier, subtractor) {
+  if (arguments.length == 0) {
+    // Means no parameters are passed
+    multiplier = 1;
+    subtractor = 0;
+  }
+
+  if (arguments.length == 1) {
+    // Means second parameter is not passed
+    subtractor = 0;
+  }
+  return (
+    debtLevel *
+      multiplier *
+      Math.pow(
+        1 + interestRate / noOfCompoundsPerYear,
+        daysSinceLastBid - subtractor
+      ) -
+    debtLevel * multiplier
+  );
+}
 
 allCombinations.forEach((iteration, index) => {
   // if (index !== 0) return; //use to only run once, for debugging
@@ -39,11 +58,9 @@ allCombinations.forEach((iteration, index) => {
       bid.oldCost = bid.cost;
       bid.cost = bid.cost * bid.estimateAcuracy;
     }
+
     runTotal += bid.cost;
     bid.runTotal = runTotal;
-    console.log(bid.ID, "--------------");
-    console.log("current bid cost ", bid.cost);
-    console.log("running total ", bid.runTotal);
     //cost of money, we need to know interest rate, amount borrowed, and time its been borrowed
     //figure out time since last bid was processed
     daysSinceLastBid = subtractDateFromDate(
@@ -53,32 +70,27 @@ allCombinations.forEach((iteration, index) => {
     if (isNaN(daysSinceLastBid)) {
       daysSinceLastBid = 0;
     }
-    console.log("days since last bid: ", daysSinceLastBid);
     //set lastprocessdate for the analysis of the next bid. This must update as we go along like running total
     lastProcessDate = bid.newEndDate;
-    // console.log("last bid process date: ", lastProcessDate);
     //figure out how far we are into the project
-    console.log("bid end ", bid.newEndDate);
-    console.log("start ", start);
     durationRunningTotal = subtractDateFromDate(bid.newEndDate, start);
     bid.durationRunningTotal = durationRunningTotal;
-    console.log("duration running total: ", durationRunningTotal);
     //test to see if we need to spend the loan
+
     if (inDebt === true) {
-      //using borrowed money: simple interest!
-      // interestSinceLastBid =
-      //   ((debtLevel * interestRate) / 365) * daysSinceLastBid;
       //using borrowed money: compound interest!
-      interestSinceLastBid =
-        debtLevel * Math.pow(1 + interestRate / 365, daysSinceLastBid) -
-        debtLevel;
-      console.log("interest since last bid: ", interestSinceLastBid);
+      if (bid.type === "delivery") {
+        interestAtDelivery = calculateInterest(0.9);
+        interestOnDownPayment = calculateInterest(0.1, bid.length);
+        interestSinceLastBid = interestAtDelivery + interestOnDownPayment;
+      } else {
+        interestSinceLastBid = calculateInterest();
+      }
+
       interestRunningTotal += interestSinceLastBid;
-      console.log("interest running total: ", interestRunningTotal);
       bid.interestRunningTotal = interestRunningTotal;
       //set new debt level for the analysis of the next bid
       debtLevel = runTotal - freeMoney;
-      console.log("debt level: ", debtLevel, typeof debtLevel);
       //haven`t paid any interest yet! only just borrowed it
       bid.debtLevel = debtLevel;
     } else if (runTotal - freeMoney > 0) {
@@ -88,11 +100,6 @@ allCombinations.forEach((iteration, index) => {
       debtLevel = runTotal - freeMoney;
       bid.costOfMoney = 0;
       bid.debtLevel = debtLevel;
-
-      console.log(
-        "in debt, will charge interest next time. debt level: ",
-        debtLevel
-      );
     } else {
       //using free money
       bid.costOfMoney = 0;
@@ -109,14 +116,6 @@ allCombinations.forEach((iteration, index) => {
     totalDuration: durationRunningTotal,
     debtStart: debtStart,
   });
-  console.log("construction cost ", runTotal);
-  console.log(
-    "total cost ",
-    Number(runTotal) + Number(interestRunningTotal.toFixed(2))
-  );
-  console.log("total interest ", interestRunningTotal);
-  console.log("total duration ", durationRunningTotal);
-  console.log("In debt since ", debtStart);
   count++;
 });
 
@@ -127,7 +126,7 @@ console.log("E");
 // too big for stringify
 // allCombInterest = JSON.stringify(allCombinations);
 // fs.writeFileSync("allCombIntz.json", allCombInterest, "utf-8");
-let top100 = allCombinations.slice(0, 9);
+let top10 = allCombinations.slice(0, 9);
 console.log("F");
 
 //stream the output to file
@@ -144,5 +143,5 @@ console.log("F");
 
 console.log("G");
 
-let top100File = JSON.stringify(top100);
-fs.writeFileSync("TopTenz.json", top100File, "utf-8");
+let top10File = JSON.stringify(top10);
+fs.writeFileSync("TopTenz.json", top10File, "utf-8");
