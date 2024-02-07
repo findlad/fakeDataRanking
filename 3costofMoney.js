@@ -67,8 +67,12 @@ allCombinations.forEach((iteration, index) => {
     if (inDebt === true) {
       //using borrowed money: compound interest!
       if (bid.type === "delivery") {
+        //this will be very slightly off because other things might have happened between the start of the bid and the end
+        interestOnDownPayment = calculateInterest(
+          debtLevel,
+          daysSinceLastBid - bid.duration
+        );
         interestAtDelivery = calculateInterest(debtLevel, daysSinceLastBid);
-        interestOnDownPayment = calculateInterest(debtLevel, daysSinceLastBid);
         interestSinceLastBid = interestAtDelivery + interestOnDownPayment;
       } else {
         interestSinceLastBid = calculateInterest(debtLevel, daysSinceLastBid);
