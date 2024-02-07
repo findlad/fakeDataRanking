@@ -40,6 +40,7 @@ allCombinations.forEach((iteration, index) => {
   let lastProcessDate = iteration.newEndDate;
 
   iteration.forEach((bid) => {
+    if (index !== 0) return;
     //calculate construction cost as we go
     if (bid.quote === false) {
       bid.oldCost = bid.cost;
@@ -67,12 +68,18 @@ allCombinations.forEach((iteration, index) => {
     if (inDebt === true) {
       //using borrowed money: compound interest!
       if (bid.type === "delivery") {
-        //this will be very slightly off because other things might have happened between the start of the bid and the end
+        //this will be very slightly off because other things might have happened between the start of the bid and the end, but its close
+        //interest on the down payment portion of the bid cost
         interestOnDownPayment = calculateInterest(
-          debtLevel,
+          debtLevel - bid.cost * 0.9,
           daysSinceLastBid - bid.duration
         );
-        interestAtDelivery = calculateInterest(debtLevel, daysSinceLastBid);
+        //interest on the COD part of the bit dost
+        interestAtDelivery = calculateInterest(
+          debtLevel - bid.cost * 0.1,
+          daysSinceLastBid
+        );
+        //actual interest
         interestSinceLastBid = interestAtDelivery + interestOnDownPayment;
       } else {
         interestSinceLastBid = calculateInterest(debtLevel, daysSinceLastBid);
