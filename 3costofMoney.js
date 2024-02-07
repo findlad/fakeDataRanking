@@ -103,6 +103,7 @@ allCombinations.forEach((iteration, index) => {
     totalDuration: durationRunningTotal,
     debtStart: debtStart,
   });
+  iteration.sort((a, b) => a.workPackage - b.workPackage);
   count++;
 });
 
