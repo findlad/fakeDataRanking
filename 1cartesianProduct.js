@@ -38,10 +38,10 @@ let allCombinations = cartesian(
   // concurrentWP4Comb
 );
 
-let allcombSample = allCombinations[242789];
+// let allcombSample = allCombinations[242789];
 // let previousComb = allCombinations[242788];
-let sampleFile = JSON.stringify(allcombSample);
+// let sampleFile = JSON.stringify(allcombSample);
 // let sampleFile1 = JSON.stringify(previousComb);
-fs.writeFileSync("cartesianSample.json", sampleFile, "utf-8");
+// fs.writeFileSync("cartesianSample.json", sampleFile, "utf-8");
 // fs.writeFileSync("cartesianSample1.json", sampleFile1, "utf-8");
 export { startDay, allCombinations };
