@@ -1,7 +1,11 @@
 import fs from "fs";
 
 import { allCombinations } from "./2manipulateDates.js";
-
+import {
+  calculateInterest,
+  setInterestRate,
+  setCompounds,
+} from "./interestCalc.js";
 import { startDay } from "./1cartesianProduct.js";
 import { subtractDateFromDate } from "./timeAddFunctions.js";
 
@@ -12,27 +16,8 @@ const freeMoney = 150000;
 let count = 0;
 let noOfCompoundsPerYear = 365;
 
-function calculateInterest(multiplier, subtractor) {
-  if (arguments.length == 0) {
-    // Means no parameters are passed
-    multiplier = 1;
-    subtractor = 0;
-  }
-
-  if (arguments.length == 1) {
-    // Means second parameter is not passed
-    subtractor = 0;
-  }
-  return (
-    debtLevel *
-      multiplier *
-      Math.pow(
-        1 + interestRate / noOfCompoundsPerYear,
-        daysSinceLastBid - subtractor
-      ) -
-    debtLevel * multiplier
-  );
-}
+setInterestRate(interestRate);
+setCompounds(noOfCompoundsPerYear);
 
 allCombinations.forEach((iteration, index) => {
   // if (index !== 0) return; //use to only run once, for debugging
@@ -48,6 +33,8 @@ allCombinations.forEach((iteration, index) => {
   let debtLevel = 0;
   let durationRunningTotal = 0;
   let start = new Date(startDay);
+  let interestAtDelivery = 0;
+  let interestOnDownPayment = 0;
 
   //what am i thinking here?
   let lastProcessDate = iteration.newEndDate;
@@ -80,11 +67,11 @@ allCombinations.forEach((iteration, index) => {
     if (inDebt === true) {
       //using borrowed money: compound interest!
       if (bid.type === "delivery") {
-        interestAtDelivery = calculateInterest(0.9);
-        interestOnDownPayment = calculateInterest(0.1, bid.length);
+        interestAtDelivery = calculateInterest(debtLevel, daysSinceLastBid);
+        interestOnDownPayment = calculateInterest(debtLevel, daysSinceLastBid);
         interestSinceLastBid = interestAtDelivery + interestOnDownPayment;
       } else {
-        interestSinceLastBid = calculateInterest();
+        interestSinceLastBid = calculateInterest(debtLevel, daysSinceLastBid);
       }
 
       interestRunningTotal += interestSinceLastBid;

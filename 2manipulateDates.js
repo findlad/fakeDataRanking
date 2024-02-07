@@ -87,7 +87,7 @@ function moveDatesForCWP(allComb) {
           //calculate start date which is end date minus bid length
           bid.newStartDate = subtractDaysFromDate(
             bid.newEndDate,
-            number(bid.length)
+            Number(bid.length)
           );
         }
       });
